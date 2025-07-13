@@ -15,6 +15,12 @@ elif [ ! -z $(cat /etc/os-release | grep 'ID=archlinux') ] || [ ! -z $(cat /etc/
 elif [ ! -z $(cat /etc/os-release | grep 'ID=debian') ] || [ ! -z $(cat /etc/os-release | grep 'ID=ubuntu') ]; then
 	# Debian and Ubuntu
 	ACCENT=red
+elif [ ! -z $(cat /etc/os-release | grep 'ID=gentoo') ] || [ ! -z $(cat /etc/os-release | grep 'ID=nobara') ]; then
+	# Gentoo and Nobara
+	ACCENT=magenta
+elif [ -d "/nix/store" ]; then
+	# NixOS
+	ACCENT=cyan
 else
 	# Other
 	ACCENT=white
