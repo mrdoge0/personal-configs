@@ -19,6 +19,6 @@ if [ ! -d "${HOME}/.local/bin" ]; then
 fi
 
 # Install zshrc shim to everyone.
-if [ "$(cat ${HOME}/.zshrc)" -ne "source /opt/personal-configs/zshrc" ]; then
+if [ "$(cat ${HOME}/.zshrc)" != "source /opt/personal-configs/zshrc" ]; then
   echo "source /opt/personal-configs/zshrc" > ${HOME}/.zshrc
 fi
