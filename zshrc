@@ -2,14 +2,19 @@
 ## ZSH CONFIG
 ## 
 
+# Oh My Zsh Plugins
+plugins=(git)
+
 # Source the Oh my Zsh, if installed.
-#(will be added)
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="robbyrussell"
+source $ZSH/oh-my-zsh.sh
 
 # Set accent color
 if [ ! -z $(cat /etc/os-release | grep 'ID=linuxmint') ] || [ ! -z $(cat /etc/os-release | grep 'ID=void') ]; then
 	# Linux Mint and Void Linux
 	ACCENT=green
-elif [ ! -z $(cat /etc/os-release | grep 'ID=archlinux') ] || [ ! -z $(cat /etc/os-release | grep 'ID=fedora') ]; then
+elif [ ! -z $(cat /etc/os-release | grep 'ID=arch') ] || [ ! -z $(cat /etc/os-release | grep 'ID=fedora') ]; then
 	# Arch Linux and Fedora
 	ACCENT=cyan
 elif [ ! -z $(cat /etc/os-release | grep 'ID=debian') ] || [ ! -z $(cat /etc/os-release | grep 'ID=ubuntu') ]; then
@@ -45,6 +50,9 @@ alias nf="clear;nerdfetch"
 alias cls="clear"
 alias c="clear;"
 alias ex="exit 0"
+alias x="exit 0"
+alias q="exit 0"
+alias wq="exit"
 
 # Sudo and SU aliases
 alias s="sudo"
