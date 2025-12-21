@@ -35,7 +35,7 @@ fi
 PROMPT="%F{red}[%?]%f %F{$ACCENT}%n@%m%f %F{white}%~%f > "
 
 # Add my NOS 4 port's project bin to PATH is exists on the machine
-if [ ! -d '/media/2TB/NOS4-Port/bin' ]; then
+if [ -d '/media/2TB/NOS4-Port/bin' ]; then
 	PATH="${PATH}:/media/2TB/NOS4-Port/bin"
 fi
 
