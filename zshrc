@@ -11,8 +11,8 @@ ZSH_THEME="robbyrussell"
 source $ZSH/oh-my-zsh.sh
 
 # Set accent color
-if [ ! -z $(cat /etc/os-release | grep 'ID=linuxmint') ] || [ ! -z $(cat /etc/os-release | grep 'ID=void') ]; then
-	# Linux Mint and Void Linux
+if [ "$(which getprop)" != 'getprop not found' ] || [ ! -z $(cat /etc/os-release | grep 'ID=linuxmint') ] || [ ! -z $(cat /etc/os-release | grep 'ID=void') ]; then
+	# Android, Linux Mint and Void Linux
 	ACCENT=green
 elif [ ! -z $(cat /etc/os-release | grep 'ID=arch') ] || [ ! -z $(cat /etc/os-release | grep 'ID=fedora') ]; then
 	# Arch Linux and Fedora
@@ -33,6 +33,11 @@ fi
 
 # Custom prompt
 PROMPT="%F{red}[%?]%f %F{$ACCENT}%n@%m%f %F{white}%~%f > "
+
+# Add my NOS 4 port's project bin to PATH is exists on the machine
+if [ ! -d '/media/2TB/NOS4-Port/bin' ]; then
+	PATH="${PATH}:/media/2TB/NOS4-Port/bin"
+fi
 
 # LS aliases
 alias ls="ls -lha --color=auto"
