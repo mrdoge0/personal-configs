@@ -1,0 +1,9 @@
+# Kernel
+sys-kernel/gentoo-kernel	debug initramfs strip experimental -generic-uki hardened -modules-compress -modules-sign -savedconfig -secureboot -test -verify-sig
+
+# NVIDIA
+x11-drivers/nvidia-drivers	X modules static-libs strip tools dist-kernel -kernel-open -modules-compress -modules-sign persistenced wayland
+dev-util/nvidia-cuda-toolkit	-nsight profiler rdma
+
+# OpenRazer
+sys-apps/openrazer		client daemon strip dist-kernel -modules-compress -modules-sign -test
