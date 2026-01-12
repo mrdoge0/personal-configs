@@ -1,0 +1,2 @@
+# Block 9999 (Git build) versions of packages which I only want testing releases (not Git snapshots)
+=app-shells/bash-9999
