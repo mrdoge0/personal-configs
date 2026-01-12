@@ -1,0 +1,12 @@
+# Clang USE flag
+app-admin/ananicy-cpp		clang
+
+# LLVM USE flag
+dev-util/bpftool		llvm
+
+# Old LLVM slots
+gui-apps/xwayland-satellite	llvm_slot_20
+dev-lang/spidermonkey		llvm_slot_19
+
+# Disable LLVM/Clang on problematic packages
+dev-util/nvidia-cuda-toolkit	-clang
