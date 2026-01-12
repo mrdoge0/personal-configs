@@ -1,0 +1,17 @@
+# GTK-related packages
+gui-libs/gtk			debug colord cups sysprof broadway
+gui-libs/gtk4-layer-shell	vala introspection
+net-misc/spice-gtk		usbredir
+
+# Enable GTK for packages
+dev-libs/libportal		gtk
+app-text/poppler		cairo
+app-crypt/gcr			gtk
+app-emulation/qemu		gtk
+
+# Qt-related packages
+dev-qt/qtbase			libproxy
+x11-themes/kvantum		kde qt5
+sys-auth/polkit-qt		qt6
+dev-qt/qtmultimedia		widgets
+dev-qt/qtgui			eglfs dbus
