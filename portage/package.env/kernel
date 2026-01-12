@@ -1,0 +1,3 @@
+# Do environment overrides exclusive to kernel
+sys-kernel/gentoo-kernel USE-FOR-GENTOO-KERNEL.conf
+x11-drivers/nvidia-drivers USE-FOR-GENTOO-KERNEL.conf
