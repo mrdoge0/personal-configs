@@ -1,0 +1,71 @@
+# Systemd
+sys-apps/systemd		boot elfutils gnutls
+
+# Ananicy-CPP
+app-admin/ananicy-cpp		cachyos-rules
+
+# CUPS
+net-print/cups			openssl kerberos usb xinetd
+
+# BlueZ
+net-wireless/bluez		mesh obex readline btpclient -debug -doc -man midi -test test-programs
+
+# FWUpd
+sys-apps/fwupd			uefi gnutls
+
+# Filesystem utilities
+sys-fs/erofs-utils		libdeflate uuid lz4 lzma threads zlib zstd
+
+# QEMU
+app-emulation/qemu 		nfs nls plugins sdl sdl-image spice usb virgl
+app-emulation/virt-manager	gui
+
+# MangoHUD
+games-util/mangohud		xnvctrl
+
+# LM Seneors
+sys-apps/lm-sensors		contrib sensord
+
+# GNOME Software
+gnome-extra/gnome-software	flatpak
+
+# Wine
+app-emulation/wine-proton	alsa fontconfig gecko -gstreamer -mingw mono sdl ssl strip unwind xcomposide nls wow64 xinerama
+app-emulation/winetricks	rar
+
+# ImageMagick
+media-gfx/imagemagick		corefonts fpx hdri lqr pango q32 q8 bzip2 cxx djvu fftw fontconfig graphviz jbig lcms lzma
+media-gfx/imagemagick		openexr openmp raw truetype wmf xml zip zlib
+
+# Fastfetch
+app-misc/fastfetch		chafa ddcutil drm elf xrandr imagemagick opencl sqlite xcb
+
+# KDE Connect
+kde-misc/kdeconnect		telephony
+
+# GIMP and Krita
+media-gfx/gimp			aalib -doc fits lua javascript mng openexr vala wmf xpm
+media-gfx/krita			color-management media mypaint-brush-engine xsimd fftw fig gsl openexr -pdf raw -gif
+
+# RAR
+app-arch/rar			all-sfx
+
+# VLC
+media-video/vlc			kms libplacebo archive skins a52 aom dc1394 fdk fluidsynth gme kms libass live mad mpeg mtp musepack omxil
+media-video/vlc			projectm sdl-image sid soxr speex srt ssl v4l vpx xml gui dav1d dts dvd faad gcrypt
+media-video/vlc			flac fontconfig kate keyring libnotify libplacebo libtar libtiger mp3 lua nfs truetype
+
+# Syncthing
+net-p2p/syncthing		tools
+
+# Wireshark
+net-analyzer/wireshark		brotli kerberos libxml2 -doc http2 http3 
+
+# Waybar
+gui-apps/waybar			niri network tray
+
+# Steam
+games-util/steam-launcher	trayicon
+
+# Telegram
+net-im/telegram-desktop		enchant
