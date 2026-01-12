@@ -1,0 +1,10 @@
+# Force back to GCC on packages problematic on Clang (will revert to GNU Binutils too)
+media-libs/libcuefile gcc.conf
+media-libs/libdc1394 gcc.conf
+media-libs/libsidplay gcc.conf
+
+# Force back only to GFortran on packages that have issues only with Flang and nothing else LLVM
+sci-libs/openblas gfortran.conf
+
+# Force back only to GNU Binutils on packages problematic only with LLVM Binutils
+sys-apps/fwupd-efi binutils.conf
