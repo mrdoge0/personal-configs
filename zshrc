@@ -11,33 +11,27 @@ ZSH_THEME="robbyrussell"
 source $ZSH/oh-my-zsh.sh
 
 # Set accent color
-if [ "$(which getprop)" != 'getprop not found' ] || [ ! -z $(cat /etc/os-release | grep 'ID=linuxmint') ] || [ ! -z $(cat /etc/os-release | grep 'ID=void') ]; then
-	# Android, Linux Mint and Void Linux
-	ACCENT=green
-elif [ ! -z $(cat /etc/os-release | grep 'ID=arch') ] || [ ! -z $(cat /etc/os-release | grep 'ID=fedora') ]; then
-	# Arch Linux and Fedora
-	ACCENT=cyan
-elif [ ! -z $(cat /etc/os-release | grep 'ID=debian') ] || [ ! -z $(cat /etc/os-release | grep 'ID=ubuntu') ]; then
-	# Debian and Ubuntu
-	ACCENT=red
-elif [ ! -z $(cat /etc/os-release | grep 'ID=gentoo') ] || [ ! -z $(cat /etc/os-release | grep 'ID=nobara') ]; then
-	# Gentoo and Nobara
-	ACCENT=magenta
-elif [ -d "/nix/store" ]; then
+if [ "$(which getprop)" != 'getprop not found' ]; then
+	# Android
+	ACCENT='green'
+elif [ -d '/nix/store' ]; then
 	# NixOS
-	ACCENT=cyan
+	ACCENT='cyan'
+elif [ -d '/System/Library' ]; then
+	# macOS
+	ACCENT='white'
 else
-	# Other
-	ACCENT=white
+	case "$(grep '^ID=' /etc/os-release | tr -d "\"\'" | cut -d'=' -f2)" in
+		void|linuxmint|cachyos) ACCENT='green';;   # Void, Mint and CachyOS
+		arch|fedora|alpine)     ACCENT='cyan';;    # Arch, Fedora and Alpine
+		debian|ubuntu)          ACCENT='red';;     # Debian and Ubuntu
+		gentoo|nobara)          ACCENT='magenta';; # Gentoo and Nobara
+		*)                      ACCENT='white';;   # Other distros
+	esac
 fi
 
 # Custom prompt
 PROMPT="%F{red}[%?]%f %F{$ACCENT}%n@%m%f %F{white}%~%f > "
-
-# Add my NOS 4 port's project bin to PATH is exists on the machine
-if [ -d '/media/2TB/NOS4-Port/bin' ]; then
-	PATH="${PATH}:/media/2TB/NOS4-Port/bin"
-fi
 
 # LS aliases
 alias ls="ls -lha --color=auto"
