@@ -1,0 +1,3 @@
+# Disable multilib on problematic packages
+net-print/cups			-abi_x86_32
+app-emulation/wine-proton	-abi_x86_32
