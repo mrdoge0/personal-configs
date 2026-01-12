@@ -1,0 +1,2 @@
+# Unmask all amd64 and ~amd64 versions of packages which are nonsensely forced to downgrade for outdated reasons
+dev-lang/python
