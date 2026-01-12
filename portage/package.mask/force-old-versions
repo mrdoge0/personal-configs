@@ -1,0 +1,3 @@
+# Enforce old package versions (mainly for NVIDIA drivers and CUDA)
+>=x11-drivers/nvidia-drivers-590
+>=dev-util/nvidia-cuda-toolkit-13
