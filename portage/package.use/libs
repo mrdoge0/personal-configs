@@ -1,0 +1,29 @@
+# Mesa
+media-libs/mesa			lm-sensors
+
+# VPN libs
+net-vpn/openvpn			lz4 lzo openssl plugins down-root inotify iproute2 pam
+
+# PipeWire
+media-video/pipewire		bluetooth extra gsettings jack-client modemmanager pipewire-alsa readline sound-server
+
+# GVFS
+gnome-base/gvfs			mtp
+
+# FFMpeg
+media-video/ffmpeg		vpx
+media-video/ffmpeg-compat	vpx
+
+# Libraries
+net-libs/gnutls			pkcs11 tools
+media-libs/babl			lcms introspection vala
+media-libs/freetype		harfbuzz
+media-libs/gd			fontconfig truetype
+app-text/xmlto			text
+dev-lua/lgi			lua_targets_luajit
+media-libs/libsdl2		gles2
+media-libs/libcanberra		alsa
+net-dns/dnsmasq			script
+media-libs/gegl			cairo lcms introspection vala
+media-libs/vulkan-loader	layers
+sys-libs/zlib			minizip
