@@ -1,0 +1,12 @@
+diff -ur a/drivers/bluetooth/btusb.c b/drivers/bluetooth/btusb.c
+--- a/drivers/bluetooth/btusb.c	2025-11-20 22:32:00.221074088 +0300
++++ b/drivers/bluetooth/btusb.c	2025-11-20 22:35:00.374155304 +0300
+@@ -781,6 +781,8 @@
+ 						    BTUSB_WIDEBAND_SPEECH },
+ 	{ USB_DEVICE(0x2b89, 0x8761), .driver_info = BTUSB_REALTEK |
+ 						    BTUSB_WIDEBAND_SPEECH },
++	{ USB_DEVICE(0x2c4e, 0x0115), .driver_info = BTUSB_REALTEK |
++						    BTUSB_WIDEBAND_SPEECH },
+ 
+ 	/* Additional Realtek 8821AE Bluetooth devices */
+ 	{ USB_DEVICE(0x0b05, 0x17dc), .driver_info = BTUSB_REALTEK },
