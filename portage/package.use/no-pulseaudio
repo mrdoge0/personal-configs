@@ -1,0 +1,6 @@
+# Disable PulseAudio on packages which support both PulseAudio and PipeWire
+media-libs/libsdl2		-pulseaudio
+dev-qt/qtmultimedia		-pulseaudio
+gui-apps/waybar			-pulseaudio
+media-sound/fluidsynth		-pulseaudio
+app-emulation/qemu		-pulseaudio
