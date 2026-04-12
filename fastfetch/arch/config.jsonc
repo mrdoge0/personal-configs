@@ -37,12 +37,12 @@
 			"type": "packages",
 			"key": "┣ 󰏓 ",
 			"keyColor": "red",
-			"format": "{dpkg} (APT) | {flatpak-all} (Flatpak)"
+			"format": "{pacman} (Pacman) | {flatpak-all} (Flatpak)"
 		},
 
 		{
 			"type": "de",
-			"key": "┣ 󰊬 ",
+			"key": "┣  ",
 			"keyColor": "red",
 			"format": "{pretty-name} {version}"
 		},
