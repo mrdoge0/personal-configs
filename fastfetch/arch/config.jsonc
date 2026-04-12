@@ -1,0 +1,172 @@
+{
+	"$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+	
+	// Logo image
+	"logo": {
+		"type": "chafa", 
+		"source": "/media/2TB/Pictures/teto-peacesign.png", 
+		"width": 54
+	},
+	
+	"modules": [
+		// Title
+		{
+			"type": "title",
+			"format": "━━━━━━┫ {user-name-colored} @ {host-name-colored} ┣━━━━━━"
+		},
+
+		"break",
+
+		// Software Corner
+		
+		{
+			"type": "os",
+			"key": "┏ 󰣇 ",
+			"keyColor": "red",
+			"format": "{pretty-name}"
+		},
+
+		{
+			"type": "kernel",
+			"key": "┣ 󰌽 ",
+			"keyColor": "red",
+			"format": "{release}"
+		},
+
+		{
+			"type": "packages",
+			"key": "┣ 󰏓 ",
+			"keyColor": "red",
+			"format": "{dpkg} (APT) | {flatpak-all} (Flatpak)"
+		},
+
+		{
+			"type": "de",
+			"key": "┣ 󰊬 ",
+			"keyColor": "red",
+			"format": "{pretty-name} {version}"
+		},
+
+		{
+			"type": "wm",
+			"key": "┣ 󱂬 ",
+			"keyColor": "red",
+			"format": "{pretty-name} ({protocol-name})"
+		},
+
+		{
+			"type": "terminal",
+			"key": "┣  ",
+			"keyColor": "red",
+			"format": "{pretty-name} {version}"
+		},
+
+		{
+			"type": "localip",
+			"key": "┣ 󰩟 ",
+			"keyColor": "red",
+			"format": "{ipv4}"
+		},
+		
+		{
+			"type": "locale",
+			"key": "┗  ",
+			"keyColor": "red"
+		},
+
+		"break",
+
+		// Hardware Corner
+
+		{
+			"type": "host",
+			"key": "┏ 󰇅 ",
+			"keyColor": "yellow"
+		},
+
+		{
+			"type": "cpu",
+			"key": "┣ 󰻠 ",
+			"keyColor": "yellow",
+			"format": "{name} ({cores-physical}C / {cores-logical}T @ {freq-max})"
+		},
+		
+		{
+			"type": "gpu",
+			"key": "┣ 󰈐 ",
+			"keyColor": "yellow",
+			"format": "{vendor} {name}"
+		},
+		
+		{
+			"type": "memory",
+			"key": "┣ 󰍛 ",
+			"keyColor": "yellow",
+			"format": "{used} / {total} ({percentage})"
+		},
+		
+        	{
+			"type": "swap",
+			"key": "┃ ┗ 󰓡 ",
+			"keyColor": "yellow",
+			"format": "[ZRAM] {used} / {total} ({percentage})"
+		},
+		
+		{
+			"type": "disk",
+			"key": "┣ 󰉋 ",
+			"keyColor": "yellow",
+			"format": "[{mountpoint}] {size-used} / {size-total} ({size-percentage})"
+		},
+		
+		{
+			"type": "display",
+			"key": "┣ 󰍹 ",
+			"keyColor": "yellow",
+			"format": "[{name}] {width}x{height} @ {refresh-rate} (x {scale-factor})"
+		},
+		
+		{
+			"type": "uptime",
+			"key": "┗ 󰁝 ",
+			"keyColor": "yellow",
+			"format": "{formatted}"
+		},
+		
+		"break",
+
+		// Customization Corner
+		
+		{
+			"type": "theme",
+			"key": "┏ 󰃣 ",
+			"keyColor": "green"
+		},
+		
+		{
+			"type": "icons",
+			"key": "┣  ",
+			"keyColor": "green"
+		},
+		
+		{
+			"type": "font",
+			"key": "┣ 󰛖 ",
+			"keyColor": "green",
+			"format": "{font2}"
+		},
+		
+		{
+			"type": "terminalfont",
+			"key": "┃ ┗  ",
+			"keyColor": "green",
+			"format": "{combined}"
+		},
+		
+		{
+			"type": "cursor",
+			"key": "┗ 󰇀 ",
+			"keyColor": "green"
+		}
+	]
+}
