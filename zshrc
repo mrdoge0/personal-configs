@@ -6,9 +6,12 @@
 plugins=(git)
 
 # Source the Oh my Zsh, if installed.
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH="${HOME}/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
-source $ZSH/oh-my-zsh.sh
+source ${ZSH}/oh-my-zsh.sh
+
+# Source Zsh Syntax Highlighting
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Set accent color
 if [ "$(which getprop)" != 'getprop not found' ]; then
