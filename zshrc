@@ -11,7 +11,11 @@ ZSH_THEME="robbyrussell"
 source ${ZSH}/oh-my-zsh.sh
 
 # Source Zsh Syntax Highlighting
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -f '/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' ]; then
+	source '/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
+elif [ -f '/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' ]; then
+	source '/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
+fi
 
 # Set accent color
 if [ "$(which getprop)" != 'getprop not found' ]; then
