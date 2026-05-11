@@ -56,16 +56,22 @@ esac
 # Custom prompt
 PROMPT="%F{red}[%?]%f %F{$ACCENT}%n@%m%f %F{white}%~%f > "
 
+# Set Fastfetch command
+case "${SHDISTRO}" in
+	Android) FASTFETCH_COMMAND='clear && /data/data/com.termux/files/usr/bin/fastfetch -c /data/data/com.termux/files/home/.pc/fastfetch/android-termux/logo.jsonc && /data/data/com.termux/files/usr/bin/fastfetch -c /data/data/com.termux/files/home/.pc/fastfetch/android-termux/main.jsonc' ;;
+	*)       FASTFETCH_COMMAND='clear && fastfetch' ;;
+esac
+
 # LS aliases
 alias ls="ls -lha --color=auto"
 alias ll="ls -lha --color=auto"
 alias dir="ls -lha --color=auto"
 
 # Fastfetch and nerdfetch aliases
-alias fastfetch="clear;fastfetch"
-alias neofetch="clear;fastfetch"
+alias fastfetch="${FASTFETCH_COMMAND}"
+alias neofetch="${FASTFETCH_COMMAND}"
 alias nerdfetch="clear;nerdfetch"
-alias ff="clear;fastfetch"
+alias ff="${FASTFETCH_COMMAND}"
 alias nf="clear;nerdfetch"
 
 # Clear and exit aliases
@@ -100,4 +106,4 @@ alias u="update-all"
 alias cu="checkupdates-all"
 
 # Zsh quality of life improvement aliases
-alias refresh="source ~/.zshrc;clear"
+alias refresh="source ~/.zshrc"
