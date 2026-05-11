@@ -17,25 +17,41 @@ elif [ -f '/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' ]; th
 	source '/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
 fi
 
-# Set accent color
-if [ "$(which getprop)" != 'getprop not found' ]; then
+# Set distro
+if [ -f '/system/build.prop' ]; then
 	# Android
-	ACCENT='green'
+	SHDISTRO='Android'
 elif [ -d '/nix/store' ]; then
 	# NixOS
-	ACCENT='cyan'
+	SHDISTRO='NixOS'
 elif [ -d '/System/Library' ]; then
 	# macOS
-	ACCENT='white'
+	SHDISTRO='macOS'
 else
+	# Linux distros
 	case "$(grep '^ID=' /etc/os-release | tr -d "\"\'" | cut -d'=' -f2)" in
-		void|linuxmint|cachyos) ACCENT='green';;   # Void, Mint and CachyOS
-		arch|fedora|alpine)     ACCENT='cyan';;    # Arch, Fedora and Alpine
-		debian|ubuntu)          ACCENT='red';;     # Debian and Ubuntu
-		gentoo|nobara)          ACCENT='magenta';; # Gentoo and Nobara
-		*)                      ACCENT='white';;   # Other distros
+		debian)    SHDISTRO='Debian'  ;;
+		arch)      SHDISTRO='Arch'    ;;
+		fedora)    SHDISTRO='Fedora'  ;;
+		ubuntu)    SHDISTRO='Ubuntu'  ;;
+		alpine)    SHDISTRO='Alpine'  ;;
+		void)      SHDISTRO='Void'    ;;
+		linuxmint) SHDISTRO='Mint'    ;;
+		cachyos)   SHDISTRO='CachyOS' ;;
+		gentoo)    SHDISTRO='Gentoo'  ;;
+		nobara)    SHDISTRO='Nobara'  ;;
+		*)         SHDISTRO='Unknown' ;;
 	esac
 fi
+
+# Set accent color
+case "${SHDISTRO}" in
+	Android|Void|Mint|CachyOS) ACCENT='green'   ;;
+	NixOS|Arch|Fedora|Alpine)  ACCENT='cyan'    ;;
+	Debian|Ubuntu)             ACCENT='red'     ;;
+	Gentoo|Nobara)             ACCENT='magenta' ;;
+	macOS|Unknown|*)           ACCENT='white'   ;;
+esac
 
 # Custom prompt
 PROMPT="%F{red}[%?]%f %F{$ACCENT}%n@%m%f %F{white}%~%f > "
@@ -79,6 +95,9 @@ alias gr="repo"
 alias gri="repo init --depth=1"
 alias grs="repo sync -j$(nproc --all)"
 
+# update-all and checkupdates-all aliases
+alias u="update-all"
+alias cu="checkupdates-all"
+
 # Zsh quality of life improvement aliases
-alias vizsh="nvim /opt/personal-configs/zshrc"
 alias refresh="source ~/.zshrc;clear"
