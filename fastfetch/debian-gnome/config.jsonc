@@ -37,7 +37,7 @@
 			"type": "packages",
 			"key": "┣ 󰏓 ",
 			"keyColor": "red",
-			"format": "{dpkg} (APT) | {flatpak-all} (Flatpak)"
+			"format": "{dpkg} (APT) | {flatpak-all} (Flatpak) | {snap} (Snap)"
 		},
 
 		{
@@ -129,8 +129,8 @@
 		{
 			"type": "uptime",
 			"key": "┗ 󰁝 ",
-			"keyColor": "yellow",
-			"format": "{formatted}"
+			"keyColor": "yellow"//,
+			//"format": "{formatted}"
 		},
 		
 		"break",
