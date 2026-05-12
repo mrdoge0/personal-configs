@@ -37,7 +37,7 @@
 			"type": "packages",
 			"key": "┣ 󰏓 ",
 			"keyColor": "red",
-			"format": "{pacman} (Pacman) | {flatpak-all} (Flatpak)"
+			"format": "{pacman} (Pacman) | {flatpak-all} (Flatpak) | {snap} (Snap)"
 		},
 
 		{
