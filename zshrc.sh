@@ -7,15 +7,18 @@ plugins=(git)
 
 # Source the Oh my Zsh, if installed.
 export ZSH="${HOME}/.oh-my-zsh"
-ZSH_THEME="robbyrussell"
-source ${ZSH}/oh-my-zsh.sh
+ZSH_THEME='robbyrussell'
+[ -d "${ZSH}/oh-my-zsh.sh" ] && source "${ZSH}/oh-my-zsh.sh"
 
 # Source Zsh Syntax Highlighting
-if [ -f '/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' ]; then
-	source '/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
-elif [ -f '/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' ]; then
-	source '/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
-fi
+for HIGHLPATH in '/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' '/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'; do
+	[ -f "${HIGHLPATH}" ] && source "${HIGHLPATH}"
+done
+
+# Source Zsh Auto Suggestions
+for SUGGPATH in '/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh' '/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh'; do
+	[ -f "${SUGGPATH}" ] && source "${SUGGPATH}"
+done
 
 # Set distro
 if [ -f '/system/build.prop' ]; then
@@ -40,6 +43,8 @@ else
 		cachyos)   SHDISTRO='CachyOS' ;;
 		gentoo)    SHDISTRO='Gentoo'  ;;
 		nobara)    SHDISTRO='Nobara'  ;;
+		antix)     SHDISTRO='antiX'   ;;
+		pardus)    SHDISTRO='Pardus'  ;;
 		*)         SHDISTRO='Unknown' ;;
 	esac
 fi
@@ -50,6 +55,7 @@ case "${SHDISTRO}" in
 	NixOS|Arch|Fedora|Alpine)  ACCENT='cyan'    ;;
 	Debian|Ubuntu)             ACCENT='red'     ;;
 	Gentoo|Nobara)             ACCENT='magenta' ;;
+	antiX|Pardus)              ACCENT='yellow'  ;;
 	macOS|Unknown|*)           ACCENT='white'   ;;
 esac
 
@@ -61,6 +67,9 @@ case "${SHDISTRO}" in
 	Android) FASTFETCH_COMMAND='clear && /data/data/com.termux/files/usr/bin/fastfetch -c /data/data/com.termux/files/home/.pc/fastfetch/android-termux/logo.jsonc && /data/data/com.termux/files/usr/bin/fastfetch -c /data/data/com.termux/files/home/.pc/fastfetch/android-termux/main.jsonc' ;;
 	*)       FASTFETCH_COMMAND='clear && fastfetch' ;;
 esac
+
+# Do Fastfetch command override if set in environment
+[ ! -z "${FASTFETCH_COMMAND_OVERRIDE}" ] && FASTFETCH_COMMAND="${FASTFETCH_COMMAND_OVERRIDE}"
 
 # LS aliases
 alias ls="ls -lha --color=auto"
