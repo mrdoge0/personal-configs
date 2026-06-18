@@ -71,48 +71,56 @@ esac
 # Do Fastfetch command override if set in environment
 [ ! -z "${FASTFETCH_COMMAND_OVERRIDE}" ] && FASTFETCH_COMMAND="${FASTFETCH_COMMAND_OVERRIDE}"
 
+# Replace ls with lsd if possible
+if which 'lsd' > /dev/null; then
+	LS_COMMAND='lsd -lha --color=auto'
+else
+	LS_COMMAND='ls -lha --color=auto'
+fi
+
 # LS aliases
-alias ls="ls -lha --color=auto"
-alias ll="ls -lha --color=auto"
-alias dir="ls -lha --color=auto"
+alias ls="${LS_COMMAND}"
+alias ll="${LS_COMMAND}"
+alias dir="${LS_COMMAND}"
+alias lsd="${LS_COMMAND}"
 
 # Fastfetch and nerdfetch aliases
 alias fastfetch="${FASTFETCH_COMMAND}"
 alias neofetch="${FASTFETCH_COMMAND}"
-alias nerdfetch="clear;nerdfetch"
+alias nerdfetch='clear;nerdfetch'
 alias ff="${FASTFETCH_COMMAND}"
-alias nf="clear;nerdfetch"
+alias nf='clear;nerdfetch'
 
 # Clear and exit aliases
-alias cls="clear"
-alias c="clear;"
-alias ex="exit 0"
-alias x="exit 0"
-alias q="exit 0"
-alias wq="exit"
+alias cls='clear'
+alias c='clear;'
+alias ex='exit 0'
+alias x='exit 0'
+alias q='exit 0'
+alias wq='exit'
 
 # Sudo and SU aliases
-alias s="sudo"
-alias ss="sudo su"
+alias s='sudo'
+alias ss='sudo su'
 
 # Neovim aliases
-alias n="nvim"
-alias sn="sudo nvim"
-alias vim="nvim"
-alias vi="nvim"
+alias n='nvim'
+alias sn='sudo nvim'
+alias vim='nvim'
+alias vi='nvim'
 
 # Git aliases
-alias g="git"
-alias sg="sudo git"
-alias gc="git clone --depth=1"
-alias sgc="sudo git clone --depth=1"
-alias gr="repo"
-alias gri="repo init --depth=1"
+alias g='git'
+alias sg='sudo git'
+alias gc='git clone --depth=1'
+alias sgc='sudo git clone --depth=1'
+alias gr='repo'
+alias gri='repo init --depth=1'
 alias grs="repo sync -j$(nproc --all)"
 
 # update-all and checkupdates-all aliases
-alias u="update-all"
-alias cu="checkupdates-all"
+alias u='update-all'
+alias cu='checkupdates-all'
 
 # Zsh quality of life improvement aliases
-alias refresh="source ~/.zshrc"
+alias refresh='source ~/.zshrc'
