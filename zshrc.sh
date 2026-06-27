@@ -2,14 +2,6 @@
 ## ZSH CONFIG
 ## 
 
-# Oh My Zsh Plugins
-plugins=(git)
-
-# Source the Oh my Zsh, if installed.
-export ZSH="${HOME}/.oh-my-zsh"
-ZSH_THEME='robbyrussell'
-[ -d "${ZSH}/oh-my-zsh.sh" ] && source "${ZSH}/oh-my-zsh.sh"
-
 # Source Zsh Syntax Highlighting
 for HIGHLPATH in '/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' '/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' '/usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh'; do
 	[ -f "${HIGHLPATH}" ] && source "${HIGHLPATH}"
