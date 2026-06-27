@@ -46,7 +46,7 @@ for SC in '/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh' '
 done
 
 # Source Zsh Autocomplete
-if [ "${NO_ZSH_AUTOCOMP}" == true ]; then
+if [ "${NO_ZSH_AUTOCOMP}" == 'true' ]; then
 	for SC in '/usr/share/zsh/site-functions/zsh-autocomplete/zsh-autocomplete.plugin.zsh'; do
 		[ -f "${SC}" ] && source "${SC}"
 	done
