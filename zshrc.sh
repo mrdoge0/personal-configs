@@ -2,16 +2,6 @@
 ## ZSH CONFIG
 ## 
 
-# Source Zsh Syntax Highlighting
-for HIGHLPATH in '/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' '/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' '/usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh'; do
-	[ -f "${HIGHLPATH}" ] && source "${HIGHLPATH}"
-done
-
-# Source Zsh Auto Suggestions
-for SUGGPATH in '/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh' '/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh' '/usr/share/zsh/site-functions/zsh-autosuggestions.zsh'; do
-	[ -f "${SUGGPATH}" ] && source "${SUGGPATH}"
-done
-
 # Set distro
 if [ -f '/system/build.prop' ]; then
 	# Android
@@ -40,6 +30,20 @@ else
 		*)         SHDISTRO='Unknown' ;;
 	esac
 fi
+
+# Set up Zsh completions
+autoload -U compinit
+compinit
+
+# Source Zsh Syntax Highlighting
+for HIGHLPATH in '/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' '/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' '/usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh'; do
+	[ -f "${HIGHLPATH}" ] && source "${HIGHLPATH}"
+done
+
+# Source Zsh Auto Suggestions
+for SUGGPATH in '/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh' '/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh' '/usr/share/zsh/site-functions/zsh-autosuggestions.zsh'; do
+	[ -f "${SUGGPATH}" ] && source "${SUGGPATH}"
+done
 
 # Set accent color
 case "${SHDISTRO}" in
