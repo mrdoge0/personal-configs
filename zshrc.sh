@@ -31,19 +31,26 @@ else
 	esac
 fi
 
-# Set up Zsh completions
+# Set up Zsh Completions
 autoload -U compinit
 compinit
 
 # Source Zsh Syntax Highlighting
-for HIGHLPATH in '/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' '/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' '/usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh'; do
-	[ -f "${HIGHLPATH}" ] && source "${HIGHLPATH}"
+for SC in '/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' '/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' '/usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh'; do
+	[ -f "${SC}" ] && source "${SC}"
 done
 
 # Source Zsh Auto Suggestions
-for SUGGPATH in '/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh' '/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh' '/usr/share/zsh/site-functions/zsh-autosuggestions.zsh'; do
-	[ -f "${SUGGPATH}" ] && source "${SUGGPATH}"
+for SC in '/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh' '/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh' '/usr/share/zsh/site-functions/zsh-autosuggestions.zsh'; do
+	[ -f "${SC}" ] && source "${SC}"
 done
+
+# Source Zsh Autocomplete
+if [ "${NO_ZSH_AUTOCOMP}" == true ]; then
+	for SC in '/usr/share/zsh/site-functions/zsh-autocomplete/zsh-autocomplete.plugin.zsh'; do
+		[ -f "${SC}" ] && source "${SC}"
+	done
+fi
 
 # Set accent color
 case "${SHDISTRO}" in
@@ -79,12 +86,14 @@ alias ls="${LS_COMMAND}"
 alias ll="${LS_COMMAND}"
 alias dir="${LS_COMMAND}"
 alias lsd="${LS_COMMAND}"
+alias l="${LS_COMMAND}"
 
 # Fastfetch and nerdfetch aliases
 alias fastfetch="${FASTFETCH_COMMAND}"
 alias neofetch="${FASTFETCH_COMMAND}"
 alias nerdfetch='clear;nerdfetch'
 alias ff="${FASTFETCH_COMMAND}"
+alias f="${FASTFETCH_COMMAND}"
 alias nf='clear;nerdfetch'
 
 # Clear and exit aliases
@@ -110,6 +119,8 @@ alias g='git'
 alias sg='sudo git'
 alias gc='git clone --depth=1'
 alias sgc='sudo git clone --depth=1'
+alias gp='git pull'
+alias sgp='sudo git pull'
 alias gr='repo'
 alias gri='repo init --depth=1'
 alias grs="repo sync -j$(nproc --all)"
@@ -119,4 +130,5 @@ alias u='update-all'
 alias cu='checkupdates-all'
 
 # Zsh quality of life improvement aliases
-alias refresh='source ~/.zshrc'
+alias refresh='cd ~/.pc && git pull && cd ~ && source ~/.zshrc'
+alias vizsh='echo "use github you dumbass" && false'
