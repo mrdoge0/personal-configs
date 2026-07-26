@@ -130,3 +130,18 @@ alias cu='checkupdates-all'
 # Zsh quality of life improvement aliases
 alias refresh='cd ~/.pc && git pull && cd ~ && source ~/.zshrc'
 alias vizsh='echo "use github you dumbass" && false'
+
+# The system update command (no, this code is not AI SLoP, and it is a real mental illness.)
+case ${SHDISTRO} in
+	Debian|Ubuntu|Mint|antiX|Pardus) UPDATER_COMMAND='echo "########################" && echo "# SYNCING APT REPOS... #" && echo "########################" && echo " > sudo apt update" && sudo apt update && echo "" && echo "#############################" && echo "# UPGRADING APT PACKAGES... #" && echo "#############################" && echo " > sudo apt full-upgrade" && sudo apt full-upgrade && echo "" && echo "###################################" && echo "# REMOVING UNUSED APT PACKAGES... #" && echo "###################################" && echo " > sudo apt autoremove" && sudo apt autoremove';;
+	Arch|CachyOS)                    UPDATER_COMMAND='echo "####################################" && echo "# UPGRADING PACMAN/AUR PACKAGES... #" && echo "####################################" && echo " > yay -Syu" && yay -Syu';;
+	Gentoo)                          UPDATER_COMMAND='echo "############################" && echo "# SYNCING PORTAGE REPOS... #" && echo "############################" && echo " > sudo emaint -a sync" && sudo emaint -a sync && echo "" && echo "#################################" && echo "# UPGRADING PORTAGE PACKAGES... #" && echo "#################################" && echo " > sudo emerge -avuDN --with-bdeps=y @world" && sudo emerge -avuDN --with-bdeps=y @world';;
+	Alpine)                          UPDATER_COMMAND='echo "########################" && echo "# SYNCING APK REPOS... #" && echo "########################" && echo " > sudo apk update" && sudo apk update && echo "" && echo "#############################" && echo "# UPGRADING APK PACKAGES... #" && echo "#############################" && echo " > sudo apk upgrade" && sudo apk upgrade';;
+	Void)                            UPDATER_COMMAND='echo "##############################" && echo "# UPGRADING XBPS PACKAGES... #" && echo "##############################" && echo " > sudo xbps-install -Syu" && sudo xbps-install -Syu';;
+	*)                               UPDATER_COMMAND='true';; # for sanity's sake
+esac
+which flatpak > /dev/null && UPDATER_COMMAND="${UPDATER_COMMAND} && echo '#################################' && echo '# UPGRADING FLATPAK PACKAGES... #' && echo '#################################' && echo ' > flatpak update' && flatpak update && echo '' && echo '#######################################' && echo '# REMOVING UNUSED FLATPAK PACKAGES... #' && echo '#######################################' && echo ' > flatpak remove --unused' && flatpak remove --unused"
+which snap > /dev/null && UPDATER_COMMAND="${UPDATER_COMMAND} && echo '##############################' && echo '# UPGRADING SNAP PACKAGES... #' && echo '##############################' && echo ' > sudo snap refresh' && sudo snap refresh"
+UPDATER_COMMAND="${UPDATER_COMMAND} && echo '' && echo '################' && echo '# DONE, ENJOY. #' && echo '################'"
+alias update-all="${UPDATER_COMMAND}"
+alias u="${UPDATER_COMMAND}"
