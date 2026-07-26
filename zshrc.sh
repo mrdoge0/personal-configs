@@ -140,8 +140,8 @@ case ${SHDISTRO} in
 	Void)                            UPDATER_COMMAND='echo "##############################" && echo "# UPGRADING XBPS PACKAGES... #" && echo "##############################" && echo " > sudo xbps-install -Syu" && sudo xbps-install -Syu';;
 	*)                               UPDATER_COMMAND='true';; # for sanity's sake
 esac
-which flatpak > /dev/null && UPDATER_COMMAND="${UPDATER_COMMAND} && echo '#################################' && echo '# UPGRADING FLATPAK PACKAGES... #' && echo '#################################' && echo ' > flatpak update' && flatpak update && echo '' && echo '#######################################' && echo '# REMOVING UNUSED FLATPAK PACKAGES... #' && echo '#######################################' && echo ' > flatpak remove --unused' && flatpak remove --unused"
-which snap > /dev/null && UPDATER_COMMAND="${UPDATER_COMMAND} && echo '##############################' && echo '# UPGRADING SNAP PACKAGES... #' && echo '##############################' && echo ' > sudo snap refresh' && sudo snap refresh"
+which flatpak > /dev/null && UPDATER_COMMAND="${UPDATER_COMMAND} && echo '' && echo '#################################' && echo '# UPGRADING FLATPAK PACKAGES... #' && echo '#################################' && echo ' > flatpak update' && flatpak update && echo '' && echo '#######################################' && echo '# REMOVING UNUSED FLATPAK PACKAGES... #' && echo '#######################################' && echo ' > flatpak remove --unused' && flatpak remove --unused"
+which snap > /dev/null && UPDATER_COMMAND="${UPDATER_COMMAND} && echo '' && echo '##############################' && echo '# UPGRADING SNAP PACKAGES... #' && echo '##############################' && echo ' > sudo snap refresh' && sudo snap refresh"
 UPDATER_COMMAND="${UPDATER_COMMAND} && echo '' && echo '################' && echo '# DONE, ENJOY. #' && echo '################'"
 alias update-all="${UPDATER_COMMAND}"
 alias u="${UPDATER_COMMAND}"
