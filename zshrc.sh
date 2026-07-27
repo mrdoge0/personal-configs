@@ -52,12 +52,12 @@ done
 
 # Set accent color
 case "${SHDISTRO}" in
-	Android|Void|Mint|CachyOS) ACCENT='green'   ;;
-	NixOS|Arch|Fedora|Alpine)  ACCENT='cyan'    ;;
-	Debian|Ubuntu)             ACCENT='red'     ;;
-	Gentoo|Nobara)             ACCENT='magenta' ;;
-	antiX|Pardus)              ACCENT='yellow'  ;;
-	macOS|Unknown|*)           ACCENT='white'   ;;
+	Android|Void|Mint|CachyOS|openSUSE) ACCENT='green'   ;;
+	NixOS|Arch|Fedora|Alpine)           ACCENT='cyan'    ;;
+	Debian|Ubuntu)                      ACCENT='red'     ;;
+	Gentoo|Nobara)                      ACCENT='magenta' ;;
+	antiX|Pardus)                       ACCENT='yellow'  ;;
+	macOS|Unknown|*)                    ACCENT='white'   ;;
 esac
 
 # Custom prompt
@@ -138,6 +138,8 @@ case ${SHDISTRO} in
 	Gentoo)                          UPDATER_COMMAND='echo "############################" && echo "# SYNCING PORTAGE REPOS... #" && echo "############################" && echo " > sudo emaint -a sync" && sudo emaint -a sync && echo "" && echo "#################################" && echo "# UPGRADING PORTAGE PACKAGES... #" && echo "#################################" && echo " > sudo emerge -avuDN --with-bdeps=y @world" && sudo emerge -avuDN --with-bdeps=y @world';;
 	Alpine)                          UPDATER_COMMAND='echo "########################" && echo "# SYNCING APK REPOS... #" && echo "########################" && echo " > sudo apk update" && sudo apk update && echo "" && echo "#############################" && echo "# UPGRADING APK PACKAGES... #" && echo "#############################" && echo " > sudo apk upgrade" && sudo apk upgrade';;
 	Void)                            UPDATER_COMMAND='echo "##############################" && echo "# UPGRADING XBPS PACKAGES... #" && echo "##############################" && echo " > sudo xbps-install -Syu" && sudo xbps-install -Syu';;
+	NixOS)                           UPDATER_COMMAND='echo "######################" && echo "# UPGRADING NIXOS... #" && echo "######################" && echo " > sudo nixos-rebuild switch --upgrade" && sudo nixos-rebuild switch --upgrade';;
+	Android)                         UPDATER_COMMAND='echo "################################" && echo "# UPGRADING TERMUX PACKAGES... #" && echo "################################" && echo " > pkg upgrade" && pkg upgrade';;
 	*)                               UPDATER_COMMAND='true';; # for sanity's sake
 esac
 which flatpak > /dev/null && UPDATER_COMMAND="${UPDATER_COMMAND} && echo '' && echo '#################################' && echo '# UPGRADING FLATPAK PACKAGES... #' && echo '#################################' && echo ' > flatpak update' && flatpak update && echo '' && echo '#######################################' && echo '# REMOVING UNUSED FLATPAK PACKAGES... #' && echo '#######################################' && echo ' > flatpak remove --unused' && flatpak remove --unused"
