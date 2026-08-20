@@ -31,27 +31,24 @@ else
 	esac
 fi
 
-# Source some Zsh extensions if distro isn't Alpine Linux
-if [ "${SHDISTRO}" != 'Alpine' ]; then
-	# Set up Zsh Completions
-	autoload -U compinit
-	compinit
-	
-	# Source Zsh Syntax Highlighting
-	for SC in '/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' '/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' '/usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh'; do
-		[ -f "${SC}" ] && source "${SC}"
-	done
-	
-	# Source Zsh Auto Suggestions
-	for SC in '/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh' '/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh' '/usr/share/zsh/site-functions/zsh-autosuggestions.zsh'; do
-		[ -f "${SC}" ] && source "${SC}"
-	done
-	
-	# Source Zsh Autocomplete
-	for SC in '/usr/share/zsh/site-functions/zsh-autocomplete/zsh-autocomplete.plugin.zsh'; do
-		[ -f "${SC}" ] && source "${SC}"
-	done
-fi
+# Set up Zsh Completions
+autoload -U compinit
+compinit
+
+# Source Zsh Syntax Highlighting
+for SC in '/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' '/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' '/usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh'; do
+	[ -f "${SC}" ] && source "${SC}"
+done
+
+# Source Zsh Auto Suggestions
+for SC in '/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh' '/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh' '/usr/share/zsh/site-functions/zsh-autosuggestions.zsh'; do
+	[ -f "${SC}" ] && source "${SC}"
+done
+
+# Source Zsh Autocomplete
+for SC in '/usr/share/zsh/site-functions/zsh-autocomplete/zsh-autocomplete.plugin.zsh'; do
+	[ -f "${SC}" ] && source "${SC}"
+done
 
 # Set accent color
 case "${SHDISTRO}" in
