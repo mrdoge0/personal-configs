@@ -72,6 +72,9 @@ esac
 # Do Fastfetch command override if set in environment
 [ ! -z "${FASTFETCH_COMMAND_OVERRIDE}" ] && FASTFETCH_COMMAND="${FASTFETCH_COMMAND_OVERRIDE}"
 
+# Add (personal configs dir)/bin to PATH
+export PATH="${PATH}:$(dirname ${0}:A)/bin"
+
 # Replace ls with lsd if possible
 if which 'lsd' > /dev/null; then
 	LS_COMMAND='lsd -lha --color=auto'
