@@ -1,0 +1,209 @@
+#!/usr/bin/env bash
+# The ultimate updater script
+
+# Common function: print a header
+m_print_header() {
+	VBORDER="$(printf '%*s' "$(( ${#1} + 4 ))" | tr ' ' '#')"
+	echo "${VBORDER}"
+	echo "# ${1} #"
+	echo "${VBORDER}"
+	return 0
+}
+
+# Common function: execute cmd
+m_exec_cmd() {
+	echo " > ${1}"
+	eval ${1}
+	EX=${?}
+	case ${EX} in
+		0) echo ' + Success!'
+		   echo ''
+		   return 0;;
+	   	*) if [ "${2}" == '--no-exit-if-fail' ]; then
+			echo " ! Command '${1}': FAILED (Exit code ${EX})"
+			return 1
+		   else
+			m_print_header "Command '${1}': FAILED (Exit code ${EX})"
+		   	exit ${EX}
+		   fi;;
+   	esac
+}
+
+# Common function: get generic string
+m_get_str() {
+	case ${1} in
+		upd) echo "Updating ${2} repositories...";;
+		upg) echo "Upgrading ${2} packages...";;
+		cln) echo "Cleaning unused ${2} packages...";;
+		*)   echo "UNKNOWN (modifier str: '${2}')";;
+	esac
+}
+
+# Set distro
+if [ -f '/system/build.prop' ]; then
+	# Android
+	SHDISTRO='Android'
+elif [ -d '/nix/store' ]; then
+	# NixOS
+	SHDISTRO='NixOS'
+elif [ -d '/System/Library' ]; then
+	# macOS
+	SHDISTRO='macOS'
+else
+	# Linux distros
+	case "$(grep '^ID=' /etc/os-release | tr -d "\"\'" | cut -d'=' -f2)" in
+		debian)    SHDISTRO='Debian'  ;;
+		arch)      SHDISTRO='Arch'    ;;
+		fedora)    SHDISTRO='Fedora'  ;;
+		ubuntu)    SHDISTRO='Ubuntu'  ;;
+		alpine)    SHDISTRO='Alpine'  ;;
+		void)      SHDISTRO='Void'    ;;
+		linuxmint) SHDISTRO='Mint'    ;;
+		cachyos)   SHDISTRO='CachyOS' ;;
+		gentoo)    SHDISTRO='Gentoo'  ;;
+		nobara)    SHDISTRO='Nobara'  ;;
+		antix)     SHDISTRO='antiX'   ;;
+		pardus)    SHDISTRO='Pardus'  ;;
+		*)         SHDISTRO='Unknown' ;;
+	esac
+fi
+
+
+# PM action: APT
+m_apt_action() {
+	m_print_header "$(m_get_str 'upd' 'APT')"
+	m_exec_cmd 'sudo apt update'
+
+	m_print_header "$(m_get_str 'upg' 'APT')"
+	m_exec_cmd 'sudo apt full-upgrade'
+
+	m_print_header "$(m_get_str 'cln' 'APT')"
+	m_exec_cmd 'sudo apt autoremove'
+
+	return 0
+}
+
+# PM action: Pacman
+m_pacman_action() {
+	if command -v yay; then
+		UCMD='yay'
+	else
+		UCMD='sudo pacman'
+	fi
+
+	case ${UCMD} in
+		yay) m_print_header "$(m_get_str 'upg' 'Pacman and AUR')";;
+		*)   m_print_header "$(m_get_str 'upg' 'Pacman')";;
+	esac
+	m_exec_cmd "${UCMD} -Syu"
+
+	case ${UCMD} in
+		yay) m_print_header "$(m_get_str 'cln' 'Pacman and AUR')";;
+		*)   m_print_header "$(m_get_str 'cln' 'Pacman')";;
+	esac
+	m_exec_cmd 'pacman -Qdtq | pacman -Rs -'
+
+	return 0
+}
+
+# PM action: Portage
+m_portage_action() {
+	m_print_header 'Updating Portage repositories... (Attempt 1/3)'
+	if ! m_exec_cmd 'sudo emaint -a sync' --no-exit-if-fail; then
+		m_print_header 'Okay, we may be unlucky this time. Trying again... (Attempt 2/3)'
+		if ! m_exec_cmd 'sudo emaint -a sync' --no-exit-if-fail; then
+			m_print_header 'Okay, emaint is starting to piss me off. Trying once more... (Attempt 3/3)'
+			m_exec_cmd 'sudo emaint -a sync'
+		fi
+	fi
+
+	m_print_header "$(m_get_str 'upg' 'Portage')"
+	m_exec_cmd 'sudo emerge -avuDN --with-bdeps=y @world'
+
+	m_print_header "$(m_get_str 'cln' 'Portage')"
+	m_exec_cmd 'sudo emerge -a --depclean'
+
+	return 0
+}
+
+# PM action: APK (Alpine)
+m_apk_action() {
+	m_print_header "$(m_get_str 'upd' 'APK')"
+	m_exec_cmd 'sudo apk update'
+
+	m_print_header "$(m_get_str 'upg' 'APK')"
+	m_exec_cmd 'sudo apk upgrade'
+
+	return 0
+}
+
+# PM action: XBPS
+m_xbps_action() {
+	m_print_header "$(m_get_str 'upg' 'XBPS')"
+	m_exec_cmd 'sudo xbps-install -Syu'
+
+	return 0
+}
+
+# PM action: Termux
+m_termux_action() {
+	m_print_header "$(m_get_str 'upg' 'Termux')"
+	m_exec_cmd 'pkg upgrade'
+
+	m_print_header "$(m_get_str 'cln' 'Termux')"
+	m_exec_cmd 'apt autoremove'
+
+	return 0
+}
+
+# PM action: NixOS
+m_nixos_action() {
+	m_print_header 'Cleaning old NixOS generations...'
+	m_exec_cmd 'sudo nix-collect-garbage -d'
+
+	m_print_header 'Updating to a new NixOS generation...'
+	m_exec_cmd 'sudo nixos-rebuild --upgrade switch'
+
+	return 0
+}
+
+# PM action: F(l)atpak
+m_flatpak_action() {
+	m_print_header "$(m_get_str 'upg' 'Flatpak')"
+	m_exec_cmd 'flatpak update'
+
+	m_print_header "$(m_get_str 'cln' 'Flatpak')"
+	m_exec_cmd 'flatpak remove --unused'
+
+	return 0
+}
+
+# PM action: Snap
+m_snap_action() {
+	m_print_header "$(m_get_str 'upg' 'Snap')"
+	m_exec_cmd 'sudo snap refresh'
+
+	return 0
+}
+
+# Trigger distro-based PM's action
+case ${SHDISTRO} in
+	Debian|Ubuntu|Mint|antiX|Pardus) m_apt_action;;
+	Arch|CachyOS)                    m_pacman_action;;
+	Gentoo)                          m_portage_action;;
+	Alpine)                          m_apk_action;;
+	Void)                            m_xbps_action;;
+	NixOS)                           m_nixos_action;;
+	Android)                         m_termux_action;;
+	Fedora|Nobara|openSUSE|*)        m_print_header 'PM action ERROR: Not implemented yet for your distro';;
+esac
+
+# Trigger flatpak action
+flatpak --version > /dev/null 2> /dev/null && m_flatpak_action
+
+# Trigger Snap action
+snap --version > /dev/null 2> /dev/null && m_snap_action
+
+# Exit
+exit 0
+
