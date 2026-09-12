@@ -22,49 +22,49 @@
 		{
 			"type": "os",
 			"key": "┏  ",
-			"keyColor": "red",
+			"keyColor": "cyan",
 			"format": "{pretty-name}"
 		},
 
 		{
 			"type": "kernel",
 			"key": "┣ 󰌽 ",
-			"keyColor": "red",
+			"keyColor": "cyan",
 			"format": "{release}"
 		},
 
 		{
 			"type": "packages",
 			"key": "┣ 󰏓 ",
-			"keyColor": "red",
+			"keyColor": "cyan",
 			"format": "{apk} (APK) | {flatpak-all} (Flatpak)"
 		},
 
 		{
 			"type": "wm",
 			"key": "┣  ",
-			"keyColor": "red",
+			"keyColor": "cyan",
 			"format": "{pretty-name} ({protocol-name})"
 		},
 
 		{
 			"type": "terminal",
 			"key": "┣  ",
-			"keyColor": "red",
+			"keyColor": "cyan",
 			"format": "{pretty-name} {version}"
 		},
 
 		{
 			"type": "localip",
 			"key": "┣ 󰩟 ",
-			"keyColor": "red",
+			"keyColor": "cyan",
 			"format": "{ipv4}"
 		},
 		
 		{
 			"type": "locale",
 			"key": "┗  ",
-			"keyColor": "red"
+			"keyColor": "cyan"
 		},
 
 		"break",
@@ -74,55 +74,55 @@
 		{
 			"type": "host",
 			"key": "┏ 󰇅 ",
-			"keyColor": "yellow"
+			"keyColor": "cyan"
 		},
 
 		{
 			"type": "cpu",
 			"key": "┣ 󰻠 ",
-			"keyColor": "yellow",
+			"keyColor": "cyan",
 			"format": "{name} ({cores-physical}C / {cores-logical}T @ {freq-max})"
 		},
 		
 		{
 			"type": "gpu",
 			"key": "┣ 󰈐 ",
-			"keyColor": "yellow",
+			"keyColor": "cyan",
 			"format": "{vendor} {name}"
 		},
 		
 		{
 			"type": "memory",
 			"key": "┣ 󰍛 ",
-			"keyColor": "yellow",
+			"keyColor": "cyan",
 			"format": "{used} / {total} ({percentage})"
 		},
 		
         	{
 			"type": "swap",
 			"key": "┃ ┗ 󰓡 ",
-			"keyColor": "yellow",
+			"keyColor": "cyan",
 			"format": "[ZRAM] {used} / {total} ({percentage})"
 		},
 		
 		{
 			"type": "disk",
 			"key": "┣ 󰉋 ",
-			"keyColor": "yellow",
+			"keyColor": "cyan",
 			"format": "[{mountpoint}] {size-used} / {size-total} ({size-percentage})"
 		},
 		
 		{
 			"type": "display",
 			"key": "┣ 󰍹 ",
-			"keyColor": "yellow",
+			"keyColor": "cyan",
 			"format": "[{name}] {width}x{height} @ {refresh-rate} (x {scale-factor})"
 		},
 		
 		{
 			"type": "uptime",
 			"key": "┗ 󰁝 ",
-			"keyColor": "yellow",
+			"keyColor": "cyan",
 			"format": "{formatted}"
 		},
 		
@@ -133,33 +133,33 @@
 		{
 			"type": "theme",
 			"key": "┏ 󰃣 ",
-			"keyColor": "green"
+			"keyColor": "cyan"
 		},
 		
 		{
 			"type": "icons",
 			"key": "┣  ",
-			"keyColor": "green"
+			"keyColor": "cyan"
 		},
 		
 		{
 			"type": "font",
 			"key": "┣ 󰛖 ",
-			"keyColor": "green",
+			"keyColor": "cyan",
 			"format": "{font2}"
 		},
 		
 		{
 			"type": "terminalfont",
 			"key": "┃ ┗  ",
-			"keyColor": "green",
+			"keyColor": "cyan",
 			"format": "{combined}"
 		},
 		
 		{
 			"type": "cursor",
 			"key": "┗ 󰇀 ",
-			"keyColor": "green"
+			"keyColor": "cyan"
 		}
 	]
 }
