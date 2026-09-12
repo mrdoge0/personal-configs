@@ -22,49 +22,49 @@
 		{
 			"type": "os",
 			"key": "┏ 󰣨 ",
-			"keyColor": "red",
+			"keyColor": "magenta",
 			"format": "{pretty-name}"
 		},
 
 		{
 			"type": "kernel",
 			"key": "┣ 󰌽 ",
-			"keyColor": "red",
+			"keyColor": "magenta",
 			"format": "{release}"
 		},
 
 		{
 			"type": "packages",
 			"key": "┣ 󰏓 ",
-			"keyColor": "red",
+			"keyColor": "magenta",
 			"format": "{emerge} (Portage) | {flatpak-all} (Flatpak) | {snap} (Snap)"
 		},
 
 		{
 			"type": "wm",
 			"key": "┣  ",
-			"keyColor": "red",
+			"keyColor": "magenta",
 			"format": "{pretty-name} ({protocol-name})"
 		},
 
 		{
 			"type": "terminal",
 			"key": "┣  ",
-			"keyColor": "red",
+			"keyColor": "magenta",
 			"format": "{pretty-name} {version}"
 		},
 
 		{
 			"type": "localip",
 			"key": "┣ 󰩟 ",
-			"keyColor": "red",
+			"keyColor": "magenta",
 			"format": "{ipv4}"
 		},
 		
 		{
 			"type": "locale",
 			"key": "┗  ",
-			"keyColor": "red"
+			"keyColor": "magenta"
 		},
 
 		"break",
@@ -74,55 +74,55 @@
 		{
 			"type": "host",
 			"key": "┏ 󰇅 ",
-			"keyColor": "yellow"
+			"keyColor": "magenta"
 		},
 
 		{
 			"type": "cpu",
 			"key": "┣ 󰻠 ",
-			"keyColor": "yellow",
+			"keyColor": "magenta",
 			"format": "{name} ({cores-physical}C / {cores-logical}T @ {freq-max})"
 		},
 		
 		{
 			"type": "gpu",
 			"key": "┣ 󰈐 ",
-			"keyColor": "yellow",
+			"keyColor": "magenta",
 			"format": "{vendor} {name}"
 		},
 		
 		{
 			"type": "memory",
 			"key": "┣ 󰍛 ",
-			"keyColor": "yellow",
+			"keyColor": "magenta",
 			"format": "{used} / {total} ({percentage})"
 		},
 		
         	{
 			"type": "swap",
 			"key": "┃ ┗ 󰓡 ",
-			"keyColor": "yellow",
+			"keyColor": "magenta",
 			"format": "[ZRAM] {used} / {total} ({percentage})"
 		},
 		
 		{
 			"type": "disk",
 			"key": "┣ 󰉋 ",
-			"keyColor": "yellow",
+			"keyColor": "magenta",
 			"format": "[{mountpoint}] {size-used} / {size-total} ({size-percentage})"
 		},
 		
 		{
 			"type": "display",
 			"key": "┣ 󰍹 ",
-			"keyColor": "yellow",
+			"keyColor": "magenta",
 			"format": "[{name}] {width}x{height} @ {refresh-rate} (x {scale-factor})"
 		},
 		
 		{
 			"type": "uptime",
 			"key": "┗ 󰁝 ",
-			"keyColor": "yellow",
+			"keyColor": "magenta",
 			"format": "{formatted}"
 		},
 		
@@ -133,33 +133,33 @@
 		{
 			"type": "theme",
 			"key": "┏ 󰃣 ",
-			"keyColor": "green"
+			"keyColor": "magenta"
 		},
 		
 		{
 			"type": "icons",
 			"key": "┣  ",
-			"keyColor": "green"
+			"keyColor": "magenta"
 		},
 		
 		{
 			"type": "font",
 			"key": "┣ 󰛖 ",
-			"keyColor": "green",
+			"keyColor": "magenta",
 			"format": "{font2}"
 		},
 		
 		{
 			"type": "terminalfont",
 			"key": "┃ ┗  ",
-			"keyColor": "green",
+			"keyColor": "magenta",
 			"format": "{combined}"
 		},
 		
 		{
 			"type": "cursor",
 			"key": "┗ 󰇀 ",
-			"keyColor": "green"
+			"keyColor": "magenta"
 		}
 	]
 }
