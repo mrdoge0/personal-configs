@@ -19,9 +19,9 @@
 		
 		{
 			"type": "os",
-			"key": "┏ 󰣇 ",
+			"key": "┏ 󰀲 ",
 			"keyColor": "green",
-			"format": "{pretty-name}"
+			"format": "{name} {version}"
 		},
 
 		{
@@ -35,12 +35,12 @@
 			"type": "packages",
 			"key": "┣ 󰏓 ",
 			"keyColor": "green",
-			"format": "{pacman} (Pacman) | {flatpak-all} (Flatpak) | {snap} (Snap)"
+			"format": "{dpkg} (Termux)"
 		},
 
 		{
 			"type": "de",
-			"key": "┣ 󰊬 ",
+			"key": "┣  ",
 			"keyColor": "green",
 			"format": "{pretty-name} {version}"
 		},
