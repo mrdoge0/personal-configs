@@ -1,2 +1,0 @@
-# Disable hardening on problematic packages
-=sys-devel/gcc-14.3.1_p20251017	-hardened

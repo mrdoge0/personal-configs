@@ -1,3 +1,0 @@
-# Lower the Make job amounts for packages too heavy to compile on -j8
-llvm-core/flang j6.conf
-dev-qt/qtwebengine j4.conf

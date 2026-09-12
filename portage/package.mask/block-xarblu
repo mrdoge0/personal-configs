@@ -1,3 +1,0 @@
-# Block updates of some packages from repo xarblu-overlay
-virtual/dist-kernel::xarblu-overlay
-games-util/mangohud::xarblu-overlay

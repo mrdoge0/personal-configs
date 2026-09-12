@@ -1,2 +1,0 @@
-# Block old versions of packages (which for some reason really wants to get installed back)
-<=llvm-core/clang-20.1.8
