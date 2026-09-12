@@ -81,55 +81,55 @@
 		{
 			"type": "host",
 			"key": "┏ 󰇅 ",
-			"keyColor": "yellow"
+			"keyColor": "red"
 		},
 
 		{
 			"type": "cpu",
 			"key": "┣ 󰻠 ",
-			"keyColor": "yellow",
+			"keyColor": "red",
 			"format": "{name} ({cores-physical}C / {cores-logical}T @ {freq-max})"
 		},
 		
 		{
 			"type": "gpu",
 			"key": "┣ 󰈐 ",
-			"keyColor": "yellow",
+			"keyColor": "red",
 			"format": "{vendor} {name}"
 		},
 		
 		{
 			"type": "memory",
 			"key": "┣ 󰍛 ",
-			"keyColor": "yellow",
+			"keyColor": "red",
 			"format": "{used} / {total} ({percentage})"
 		},
 		
         	{
 			"type": "swap",
 			"key": "┃ ┗ 󰓡 ",
-			"keyColor": "yellow",
+			"keyColor": "red",
 			"format": "[ZRAM] {used} / {total} ({percentage})"
 		},
 		
 		{
 			"type": "disk",
 			"key": "┣ 󰉋 ",
-			"keyColor": "yellow",
+			"keyColor": "red",
 			"format": "[{mountpoint}] {size-used} / {size-total} ({size-percentage})"
 		},
 		
 		{
 			"type": "display",
 			"key": "┣ 󰍹 ",
-			"keyColor": "yellow",
+			"keyColor": "red",
 			"format": "[{name}] {width}x{height} @ {refresh-rate} (x {scale-factor})"
 		},
 		
 		{
 			"type": "uptime",
 			"key": "┗ 󰁝 ",
-			"keyColor": "yellow"//,
+			"keyColor": "red"//,
 			//"format": "{formatted}"
 		},
 		
@@ -140,33 +140,33 @@
 		{
 			"type": "theme",
 			"key": "┏ 󰃣 ",
-			"keyColor": "green"
+			"keyColor": "red"
 		},
 		
 		{
 			"type": "icons",
 			"key": "┣  ",
-			"keyColor": "green"
+			"keyColor": "red"
 		},
 		
 		{
 			"type": "font",
 			"key": "┣ 󰛖 ",
-			"keyColor": "green",
+			"keyColor": "red",
 			"format": "{font2}"
 		},
 		
 		{
 			"type": "terminalfont",
 			"key": "┃ ┗  ",
-			"keyColor": "green",
+			"keyColor": "red",
 			"format": "{combined}"
 		},
 		
 		{
 			"type": "cursor",
 			"key": "┗ 󰇀 ",
-			"keyColor": "green"
+			"keyColor": "red"
 		}
 	]
 }
