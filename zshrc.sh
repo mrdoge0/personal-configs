@@ -136,7 +136,7 @@ alias refresh='cd ~/.pc && git pull && cd ~ && source ~/.zshrc'
 alias vizsh='echo "use github you dumbass" && false'
 
 # Gentoo-specific aliases
-if [ "${SHDISTRO}" == 'Gentoo' ]; then
+if [ "${SHDISTRO}" = 'Gentoo' ]; then
 	alias etaildl='sudo tail -f /var/log/emerge-fetch.log'
 	alias eworldupd='sudo emerge -avuDN --with-bdeps=y @world'
 	alias eworldupdp='emerge -pavuDN --with-bdeps=y @world'
