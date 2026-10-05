@@ -1,0 +1,70 @@
+diff --git a/src/hud_elements.cpp b/src/hud_elements.cpp
+index 8083591..12733ac 100644
+--- a/src/hud_elements.cpp
++++ b/src/hud_elements.cpp
+@@ -644,7 +644,13 @@ void HudElements::vram(){
+                                 continue;
+ 
+ 
+-                HUDElements.TextColored(HUDElements.colors.vram, gpu->vram_text().c_str());
++                const char* vram_text_from_conf;
++                if (HUDElements.params->vram_text.empty())
++                    vram_text_from_conf = gpu->vram_text().c_str();
++                else
++                    vram_text_from_conf = HUDElements.params->vram_text.c_str();
++
++                HUDElements.TextColored(HUDElements.colors.vram, vram_text_from_conf);
+ 
+                 ImguiNextColumnOrNewRow();
+                 // Add gtt_used to vram usage for APUs
+@@ -755,7 +761,14 @@ void HudElements::ram(){
+     if (HUDElements.params->enabled[OVERLAY_PARAM_ENABLED_ram] ||
+         HUDElements.params->enabled[OVERLAY_PARAM_ENABLED_ram_temp]) {
+         ImguiNextColumnFirstItem();
+-        HUDElements.TextColored(HUDElements.colors.ram, "RAM");
++        
++        const char* ram_text;
++        if (HUDElements.params->ram_text.empty())
++            ram_text = "RAM";
++        else
++            ram_text = HUDElements.params->ram_text.c_str();
++            
++        HUDElements.TextColored(HUDElements.colors.ram, ram_text);
+     }
+ 
+     if (HUDElements.params->enabled[OVERLAY_PARAM_ENABLED_ram]) {
+diff --git a/src/overlay_params.cpp b/src/overlay_params.cpp
+index 5bbc548..25eb44f 100644
+--- a/src/overlay_params.cpp
++++ b/src/overlay_params.cpp
+@@ -593,6 +593,8 @@ parse_ftrace(const char *str) {
+ #define parse_media_player_name(s) parse_str(s)
+ #define parse_font_scale_media_player(s) parse_float(s)
+ #define parse_cpu_text(s) parse_str(s)
++#define parse_vram_text(s) parse_str(s)
++#define parse_ram_text(s) parse_str(s)
+ #define parse_fps_text(s) parse_str(s)
+ #define parse_log_interval(s) parse_unsigned(s)
+ #define parse_font_size(s) parse_float(s)
+diff --git a/src/overlay_params.h b/src/overlay_params.h
+index 0ff802c..43a537d 100644
+--- a/src/overlay_params.h
++++ b/src/overlay_params.h
+@@ -196,6 +196,8 @@ struct Tracepoint;
+    OVERLAY_PARAM_CUSTOM(media_player_format)         \
+    OVERLAY_PARAM_CUSTOM(cpu_text)                    \
+    OVERLAY_PARAM_CUSTOM(gpu_text)                    \
++   OVERLAY_PARAM_CUSTOM(vram_text)                   \
++   OVERLAY_PARAM_CUSTOM(ram_text)                    \
+    OVERLAY_PARAM_CUSTOM(log_interval)                \
+    OVERLAY_PARAM_CUSTOM(permit_upload)               \
+    OVERLAY_PARAM_CUSTOM(benchmark_percentiles)       \
+@@ -340,6 +342,8 @@ struct overlay_params {
+    std::string pci_dev;
+    std::string media_player_name;
+    std::string cpu_text, fps_text;
++   std::string vram_text;
++   std::string ram_text;
+    std::map<std::string, std::string> cpu_custom_temp_sensor;
+    std::vector<std::string> blacklist;
+    unsigned autostart_log;
