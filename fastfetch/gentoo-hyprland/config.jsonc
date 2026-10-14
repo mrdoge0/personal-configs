@@ -4,7 +4,7 @@
 	// Logo image
 	"logo": {
 		"type": "kitty", 
-		"source": "/media/2TB/Pictures/teto-peacesign.png", 
+		"source": "~/.pc/fastfetch/miki.png", 
 		"width": 54
 	},
 	
