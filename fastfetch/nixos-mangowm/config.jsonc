@@ -3,7 +3,7 @@
 	
 	// Logo image
 	"logo": {
-		"type": "chafa", 
+		"type": "kitty", 
 		"source": "~/.pc/fastfetch/miki.png", 
 		"width": 54
 	},
