@@ -33,11 +33,11 @@ fi
 export SHDISTRO
 
 # Fixup: Kitty on NixOS does not automatically enable shell integration by itself for some reason, so let's fix it.
-if [ "${SHDISTRO}" == 'NixOS' ] && [ ! -z "${KITTY_INSTALLATION_DIR}" ]; do
+if [ "${SHDISTRO}" == 'NixOS' ] && [ ! -z "${KITTY_INSTALLATION_DIR}" ]; then
 	autoload -Uz -- "${KITTY_INSTALLATION_DIR}/shell-integration/zsh/kitty-integration"
 	kitty-integration
 	unfunction kitty-integration
-done
+fi
 
 # Set up Zsh Completions
 autoload -U compinit
