@@ -165,9 +165,9 @@ case ${SHDISTRO} in
 										alias viportage='sudo nvim /etc/portage/make.conf'
 										;;
 	NixOS)								# NixOS
-										alias nixupd='sudo nixos-rebuild switch'
-										alias nixupg='sudo nixos-rebuild --upgrade switch'
-										alias nixcln='sudo nix-collect-garbage -d'
+										alias nixrf='sudo nixos-rebuild switch'
+										alias nixup='sudo nixos-rebuild --upgrade switch'
+										alias nixcl='sudo nix-collect-garbage -d'
 										alias vinix='sudo nvim /etc/nixos/configuration.nix'
 										alias vinixhw='sudo nvim /etc/nixos/hardware-configuration.nix'
 										;;
