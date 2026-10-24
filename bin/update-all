@@ -213,7 +213,7 @@ m_personalconf_action() {
 	done
 
 	# compare zshrc.sh
-	if [ "$(cat ./zshrc.sh)" != "${OZRC}" ]; do
+	if [ "$(cat ./zshrc.sh)" != "${OZRC}" ]; then
 		echo " - Notice: zshrc has been changed, recommended to reopen the shells."
 	fi
 
