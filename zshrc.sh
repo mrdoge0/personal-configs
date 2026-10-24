@@ -142,9 +142,33 @@ alias cu='checkupdates-all'
 alias refresh='cd ~/.pc && git pull && cd ~ && source ~/.zshrc'
 alias vizsh='echo "use github you dumbass" && false'
 
-# Gentoo-specific aliases
-if [ "${SHDISTRO}" = 'Gentoo' ]; then
-	alias etaildl='sudo tail -f /var/log/emerge-fetch.log'
-	alias eworldupd='sudo emerge -avuDN --with-bdeps=y @world'
-	alias eworldupdp='emerge -pavuDN --with-bdeps=y @world'
-fi
+# Distro-specific aliases
+case ${SHDISTRO} in
+	Debian|Ubuntu|Mint|antiX|Pardus)	# Debian and Debian-based
+										alias aptup='sudo apt update && sudo apt upgrade && sudo apt autoremove'
+										alias aptin='sudo apt install'
+										;;
+	Arch|CachyOS)						# Arch and Arch-based
+										alias vipm='sudo nvim /etc/pacman.conf'
+										if which yay > /dev/null 2> /dev/null; then
+											alias pmup='yay -Syu'
+											alias pmin='yay -S'
+										else
+											alias pmup='sudo pacman -Syu'
+											alias pmin='sudo pacman -S'
+										fi
+										;;
+	Gentoo)								# Gentoo
+										alias etaildl='sudo tail -f /var/log/emerge-fetch.log'
+										alias eworldupd='sudo emerge -avuDN --with-bdeps=y @world'
+										alias eworldupdp='emerge -pavuDN --with-bdeps=y @world'
+										alias viportage='sudo nvim /etc/portage/make.conf'
+										;;
+	NixOS)								# NixOS
+										alias nixupd='sudo nixos-rebuild switch'
+										alias nixupg='sudo nixos-rebuild --upgrade switch'
+										alias nixcln='sudo nix-collect-garbage -d'
+										alias vinix='sudo nvim /etc/nixos/configuration.nix'
+										alias vinixhw='sudo nvim /etc/nixos/hardware-configuration.nix'
+										;;
+esac
