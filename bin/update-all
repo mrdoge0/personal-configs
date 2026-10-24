@@ -180,12 +180,45 @@ m_flatpak_action() {
 	return 0
 }
 
-# PM action: Snap
+# PM action: Snap (WIP)
 m_snap_action() {
 	m_print_header "$(m_get_str 'upg' 'Snap')"
 	m_exec_cmd 'sudo snap refresh'
 
 	return 0
+}
+
+# Misc action: Personal configs local copy
+m_personalconf_action() {
+	m_print_header 'Updating the personal configs repo...'
+
+	# cd to .pc
+    OPWD="$(pwd)"
+	cd "${HOME}/.pc"
+
+	# revoke +x to bin/*
+	for F in bin/*; do
+		m_exec_cmd "chmod -x $(realpath ${F})"
+	done
+
+	# get zshrc.sh content to compare later
+	OZRC="$(cat ./zshrc.sh)"
+
+	# pull new changes
+	m_exec_cmd 'git pull'
+
+	# regrant +x to bin/*
+	for F in bin/*; do
+		m_exec_cmd "chmod +x $(realpath ${F})"
+	done
+
+	# compare zshrc.sh
+	if [ "$(cat ./zshrc.sh)" != "${OZRC}" ]; do
+		echo " - Notice: zshrc has been changed, recommended to reopen the shells."
+	fi
+
+	# cd back to old pwd
+	cd "${OPWD}"
 }
 
 # Trigger distro-based PM's action
@@ -205,6 +238,9 @@ flatpak --version > /dev/null 2> /dev/null && m_flatpak_action
 
 # Trigger Snap action
 snap --version > /dev/null 2> /dev/null && m_snap_action
+
+# Trigger personal confs actions
+[ -f "${HOME}/.pc/zshrc.sh" ] && m_personalconf_action
 
 # Exit
 m_print_header 'Done, enjoy.'
