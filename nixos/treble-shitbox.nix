@@ -83,7 +83,7 @@
 	    Enable = "Source,Sink,Media,Socket";
       };
     };
-  }
+  };
 
   # HW-related packages
   environment.systemPackages = with pkgs; [ 
