@@ -69,9 +69,7 @@ in
       "en_US.UTF-8/UTF-8"
     ];
   };
-  console = {
-    useXkbConfig = true;
-  };
+  console.useXkbConfig = true;
 
   # Services
   services = {
@@ -537,8 +535,10 @@ in
       python3
 
       # Terminal programs
+      binutils
       fastfetch
       lsd
+      nixfmt
       usbutils
       vulkan-tools
 
