@@ -83,6 +83,18 @@ in
     gvfs.enable = true;
     udisks2.enable = true;
 
+    # CUPS
+    printing.enable = true;
+
+    # OpenSSH
+    openssh = {
+      enable = true;
+      settings = {
+        PermitRootLogin = "no";
+        AllowUsers = [ "Teto" ];
+      };
+    };
+
     # SDDM
     displayManager.sddm = {
       enable = true;
