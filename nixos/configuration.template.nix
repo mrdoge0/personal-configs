@@ -11,7 +11,7 @@
 
 let
   # Fetch my repo
-  personal-configs = builtins.fetchGit { url = "https://github.com/mrdoge0/personal-configs"; };
+  personal-configs = builtins.fetchGit { url = "https://github.com/mrdoge0/personal-configs"; ref = "main"; };
 in
 {
     # Stitch everything together
