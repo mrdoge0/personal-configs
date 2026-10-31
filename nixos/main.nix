@@ -50,7 +50,7 @@ in
   };
 
   # Timezone
-  time.timeZone = "Europe/Istanbul"
+  time.timeZone = "Europe/Istanbul";
 
   # Language time
   i18n = {
