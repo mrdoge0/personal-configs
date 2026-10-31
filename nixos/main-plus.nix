@@ -9,21 +9,8 @@
 }:
 
 {
-  # Services
-  services = {
-    # CUPS
-    printing.enable = true;
-
-    # OpenSSH
-    openssh = {
-      enable = true;
-      settings = {
-        PermitRootLogin = "no";
-        AllowUsers = [ "Teto" ];
-        DenyUsers = [ "Guest" ];
-      };
-    };
-  };
+  # Guest rule for SSH
+  services.openssh.settings.DenyUsers = [ "Guest" ];
 
   # Programs
   programs = {
