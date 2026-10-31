@@ -1,7 +1,12 @@
-## 
+##
 ## MAIN NIXOS CONFIG
-## 
-{ config, lib, pkgs, ... }:
+##
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   # Fetch nix-flatpak
@@ -11,7 +16,9 @@ let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
 
   # Fetch NixOS 23.05
-  pkgs2305 = import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-23.05.tar.gz") {};
+  pkgs2305 =
+    import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-23.05.tar.gz")
+      { };
 
   # Fetch the MangoBar HM Flake
   mangobar = builtins.getFlake "github:mangowm/mangobar/main";
@@ -33,10 +40,13 @@ in
     gc.automatic = true;
     settings = {
       auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
     };
   };
-  
+
   # Kernel parameters (common)
   boot.kernelParams = [
     "ignore_loglevel"
@@ -55,7 +65,7 @@ in
   # Language time
   i18n = {
     defaultLocale = "tr_TR.UTF-8";
-    extraLocales = [ 
+    extraLocales = [
       "en_US.UTF-8/UTF-8"
     ];
   };
@@ -82,7 +92,7 @@ in
       extraPackages = [ pkgs.catppuccin-sddm ];
       theme = "catppuccin-mocha-mauve";
     };
-    
+
     # Pipewire
     pipewire = {
       enable = true;
@@ -100,25 +110,43 @@ in
       # Remotes (nix-flatpak)
       remotes = lib.mkOptionDefault [
         # Flathub Beta
-        { name = "flathub-beta"; location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo"; }
+        {
+          name = "flathub-beta";
+          location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";
+        }
 
-	      # Mixtapes
-	      { name = "mixtapes"; location = "https://m-obeid.github.io/Mixtapes/mixtapes.flatpakrepo"; }
+        # Mixtapes
+        {
+          name = "mixtapes";
+          location = "https://m-obeid.github.io/Mixtapes/mixtapes.flatpakrepo";
+        }
       ];
 
       # Explicitly installed packages (nix-flatpak)
       packages = [
         # Flatseal
-	      { appId= "com.github.tchx84.Flatseal"; origin = "flathub"; }
+        {
+          appId = "com.github.tchx84.Flatseal";
+          origin = "flathub";
+        }
 
         # Mixtapes
-        { appId = "com.pocoguy.Muse"; origin = "mixtapes"; }
+        {
+          appId = "com.pocoguy.Muse";
+          origin = "mixtapes";
+        }
 
-    	  # FDM
-	      { appId = "org.freedownloadmanager.Manager"; origin = "flathub"; }
+        # FDM
+        {
+          appId = "org.freedownloadmanager.Manager";
+          origin = "flathub";
+        }
 
-	      # Gauge
-	      { appId = "io.github.josephmawa.Gauge"; origin = "flathub"; }
+        # Gauge
+        {
+          appId = "io.github.josephmawa.Gauge";
+          origin = "flathub";
+        }
       ];
     };
 
@@ -199,15 +227,18 @@ in
         "SyncDisabled" = true;
         "PasswordManagerEnabled" = false;
         "SpellcheckEnabled" = true;
-        "SpellcheckLanguage" = [ "tr" "en-US" ];
-	      "WebAppInstallForceList" = [
-	        {
-	          "custom_name" = "Proton Pass";
-	          "create_desktop_shortcut" = true;
-	          "default_launch_container" = "window";
-	          "url" = "https://pass.proton.me";
-	        }
-	      ];
+        "SpellcheckLanguage" = [
+          "tr"
+          "en-US"
+        ];
+        "WebAppInstallForceList" = [
+          {
+            "custom_name" = "Proton Pass";
+            "create_desktop_shortcut" = true;
+            "default_launch_container" = "window";
+            "url" = "https://pass.proton.me";
+          }
+        ];
       };
 
       # Sure, let's declare my essential extensions
@@ -219,7 +250,7 @@ in
         "ghmbeldphafepmbegfdlkpapadhbakde" # Proton Pass
         "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
         "cpbiigflocpkmbclhjndgfalelmegokd" # Random YT no dubbing extension
-	      "fgmjlmbojbkmdpofahffgcpkhkngfpef" # Startpage
+        "fgmjlmbojbkmdpofahffgcpkhkngfpef" # Startpage
       ];
     };
 
@@ -238,12 +269,12 @@ in
         ms-python.python
         zainchen.json
         ms-pyright.pyright
-	      redhat.java
-	      redhat.vscode-xml
+        redhat.java
+        redhat.vscode-xml
         redhat.vscode-yaml
         ms-dotnettools.csharp
-	      github.github-vscode-theme
-	      ms-vscode.cpptools
+        github.github-vscode-theme
+        ms-vscode.cpptools
       ];
     };
 
@@ -271,95 +302,95 @@ in
       enable = true;
       libraries = with pkgs; [
         # Standards
-	      stdenv.cc.cc.lib
+        stdenv.cc.cc.lib
         gtk3
-	      pango
-	      atk
-	      cairo
-	      gdk-pixbuf
-	      glib
-	      gobject-introspection
-	      mpv
-	      libepoxy
-	      fontconfig
-	      gnutls
-	      libxcb
-	      libxcb-util
-	      libxcb-wm
-	      libxcb-image
-	      libxcb-render-util
-	      libxcb-errors
-	      libxcb-cursor
+        pango
+        atk
+        cairo
+        gdk-pixbuf
+        glib
+        gobject-introspection
+        mpv
+        libepoxy
+        fontconfig
+        gnutls
+        libxcb
+        libxcb-util
+        libxcb-wm
+        libxcb-image
+        libxcb-render-util
+        libxcb-errors
+        libxcb-cursor
 
-	      # Codecs are fun
-	      sndio
-	      libcdio-paranoia
-	      libvdpau
-	      libcaca
-	      lame
-	      twolame
-	      libopus
-	      speex
-	      pkgs2305.libtheora
-	      libvorbis
-	      wavpack
-	      xvidcore
-	      snappy
-	      openjpeg
-	      openjph
-	      zvbi
-	      libuchardet
-	      game-music-emu
-	      libopenmpt
-	      chromaprint
-	      libbs2b
-	      lilv
-	      soxr
-	      libdvdnav_4_2_1
-	      libraw1394
-	      libavc1394
-	      libiec61883
-	      openal
-	      libass
-	      zeromq
-	      vid-stab
-	      libssh
-	      vulkan-loader
-	      vulkan-headers
-	      vulkan-validation-layers
-	      libjpeg_turbo
-	      gsm
-	      libpulseaudio
+        # Codecs are fun
+        sndio
+        libcdio-paranoia
+        libvdpau
+        libcaca
+        lame
+        twolame
+        libopus
+        speex
+        pkgs2305.libtheora
+        libvorbis
+        wavpack
+        xvidcore
+        snappy
+        openjpeg
+        openjph
+        zvbi
+        libuchardet
+        game-music-emu
+        libopenmpt
+        chromaprint
+        libbs2b
+        lilv
+        soxr
+        libdvdnav_4_2_1
+        libraw1394
+        libavc1394
+        libiec61883
+        openal
+        libass
+        zeromq
+        vid-stab
+        libssh
+        vulkan-loader
+        vulkan-headers
+        vulkan-validation-layers
+        libjpeg_turbo
+        gsm
+        libpulseaudio
 
-	      # In order to make Fernus ZKitapX run
-	      libarchive
-	      alsa-lib
-	      libglvnd
-	      egl-wayland
-	      egl-gbm
-	      egl-x11
-	      eglexternalplatform
-	      libgbm
-	      libva
-	      libxscrnsaver
-	      pkgs2305.rubberband
-	      pkgs2305.libbluray
-	      libdrm
-	      libxv
-	      samba
-	      lua5_2
-	      lcms2
-	      libxxf86vm
-	      libxxf86dga
-	      libxxf86misc
-	      libwebp
-	      librsvg
-	      shine
-	      libgcrypt
-	      flite
-	      numactl
-	      libjack2
-	      libusb1
+        # In order to make Fernus ZKitapX run
+        libarchive
+        alsa-lib
+        libglvnd
+        egl-wayland
+        egl-gbm
+        egl-x11
+        eglexternalplatform
+        libgbm
+        libva
+        libxscrnsaver
+        pkgs2305.rubberband
+        pkgs2305.libbluray
+        libdrm
+        libxv
+        samba
+        lua5_2
+        lcms2
+        libxxf86vm
+        libxxf86dga
+        libxxf86misc
+        libwebp
+        librsvg
+        shine
+        libgcrypt
+        flite
+        numactl
+        libjack2
+        libusb1
       ];
     };
   };
@@ -424,35 +455,35 @@ in
       # Core HM config
       home = {
         stateVersion = "26.05";
-	      homeDirectory = "/home/Teto";
-	      username = "Teto";
+        homeDirectory = "/home/Teto";
+        username = "Teto";
       };
 
       # Services
       services = {
         # MangoBar
-	      mangobar = {
-	        enable = true;
+        mangobar = {
+          enable = true;
 
-	        # Settings
-	        settings = {
-	          sys-interval = 1;
-	          modules-left = [
-	            "workspaces"
-	            "layout"
-	            "window"
-	          ];
-	          modules-right = [
-	            "tray"
-	            "hideclients"
-	            "network"
-	            "pulseaudio"
-	            "cpu"
-	            "memory"
-	            "clock#time"
-	          ];
-	        };
-	      };
+          # Settings
+          settings = {
+            sys-interval = 1;
+            modules-left = [
+              "workspaces"
+              "layout"
+              "window"
+            ];
+            modules-right = [
+              "tray"
+              "hideclients"
+              "network"
+              "pulseaudio"
+              "cpu"
+              "memory"
+              "clock#time"
+            ];
+          };
+        };
       };
     };
   };
@@ -464,16 +495,16 @@ in
       isNormalUser = true;
       uid = 1000;
       extraGroups = [
-	      "Teto"
-	      "AllRealUsers"
+        "Teto"
+        "AllRealUsers"
         "wheel"
         "networkmanager"
         "wireshark"
         "kvm"
         "libvirtd"
-	      "input"
-	      "adbusers"
-	    ];
+        "input"
+        "adbusers"
+      ];
       home = "/home/Teto";
       shell = pkgs.zsh;
     };

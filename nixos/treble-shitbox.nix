@@ -1,7 +1,12 @@
-## 
+##
 ## HW-SPECIFIC NIXOS CONFIG FOR MY PC
-## 
-{ config, lib, pkgs, ... }:
+##
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   # Boot stuff
@@ -38,7 +43,7 @@
     "/".options = [ "discard" ];
 
     # No-name 120GB DRAM-less SATA SSD - Home directory
-    "/home" = { 
+    "/home" = {
       device = "/dev/disk/by-uuid/5e1c397a-ccf5-4767-be16-3603acdfff89";
       fsType = "f2fs";
       options = [ "discard" ];
@@ -80,13 +85,13 @@
       enable = true;
       settings.General = {
         Experimental = true;
-	    Enable = "Source,Sink,Media,Socket";
+        Enable = "Source,Sink,Media,Socket";
       };
     };
   };
 
   # HW-related packages
-  environment.systemPackages = with pkgs; [ 
+  environment.systemPackages = with pkgs; [
     # OpenRazer
     openrazer-daemon
     polychromatic
