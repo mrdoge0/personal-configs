@@ -630,6 +630,9 @@ in
       kdiskmark
       mission-center
       waycheck
+
+      # Telegram
+      materialgram
     ];
   };
 }
