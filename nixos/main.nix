@@ -548,6 +548,8 @@ in
 
       # Terminal programs
       binutils
+      e2fsprogs
+      erofs-utils
       fastfetch
       lsd
       nixfmt
