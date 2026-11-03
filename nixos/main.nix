@@ -577,8 +577,9 @@ in
       loupe
       nautilus
 
-      # Chromium (for some reason programs.chromium.enable will not install Chromium itself)
+      # Browsers
       chromium
+      tor-browser
 
       # Obsidian
       obsidian
@@ -611,6 +612,7 @@ in
       edl
       github-cli
       heimdall
+      scrcpy
 
       # Themes
       adw-gtk3
