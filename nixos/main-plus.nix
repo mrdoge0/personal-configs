@@ -9,8 +9,14 @@
 }:
 
 {
-  # Guest rule for SSH
-  services.openssh.settings.DenyUsers = [ "Guest" ];
+  # Services
+  services = {
+    # Guest rule for SSH
+    services.openssh.settings.DenyUsers = [ "Guest" ];
+
+    # LACT
+    lact.enable = true;
+  };
 
   # Programs
   programs = {
