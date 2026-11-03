@@ -556,6 +556,7 @@ in
       fastfetch
       lsd
       nixfmt
+      openssl
       usbutils
       vulkan-tools
 
