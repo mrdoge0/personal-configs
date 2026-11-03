@@ -76,5 +76,8 @@
     # Containers
     boxbuddy
     distrobox
+
+    # Slop Upscaler
+    upscayl
   ];
 }
