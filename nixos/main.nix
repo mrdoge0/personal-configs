@@ -35,7 +35,10 @@ in
 
   # Core Nix PM config
   system.stateVersion = "26.05";
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    problems.handlers."gtk+".broken = "warn";
+  };
   nix = {
     gc.automatic = true;
     settings = {
