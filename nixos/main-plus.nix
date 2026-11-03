@@ -8,6 +8,10 @@
   ...
 }:
 
+let
+  # Hyper Simple Flakes Collection
+  hypersimple-flakes-collection = builtins.getFlake "github:mrdoge0/hypersimple-flakes-collection/main";
+in
 {
   # Services
   services = {
@@ -79,5 +83,8 @@
 
     # Slop Upscaler
     upscayl
+
+    # Legacy Launcher (my (or Mistral's) own vibecoded flake since nixpkgs will never publish pirated stuff :D)
+    hypersimple-flakes-collection.packages.x86_64-linux.legacy-launcher
   ];
 }
