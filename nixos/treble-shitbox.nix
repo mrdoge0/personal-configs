@@ -28,8 +28,14 @@
 
     # Kernel parameters (machine-specific)
     kernelParams = [
+      # IOMMU on AMD CPU
       "amd_iommu=on"
       "iommu=pt"
+
+      # Intel Arc: GuC on i915 driver (I have no idea will i915 or xe be used on Alchemist, so..)
+      "i915.enable_guc=3"
+
+      # Monitor TTY config
       "video=DP-1:1920x1080@75"
     ];
   };
@@ -77,6 +83,19 @@
 
   # HW
   hardware = {
+    # Intel Arc: config for HW tree
+    graphics = {
+      enable = true;
+      extraPackages = with pkgs; [
+        intel-compute-runtime
+        intel-media-driver
+        vpl-gpu-rt
+      ];
+    };
+
+    # Intel Arc: it is an awesome idea to enable redist fw
+    enableRedistributableFirmware = true;
+
     # OpenRazer
     openrazer.enable = true;
 
@@ -90,16 +109,25 @@
     };
   };
 
-  # HW-related packages
-  environment.systemPackages = with pkgs; [
-    # OpenRazer
-    openrazer-daemon
-    polychromatic
+  # Environment
+  environment = {
+    # Vars
+    sessionVariables = {
+      # Intel Arc: use Intel VAAPI
+      LIBVA_DRIVER_NAME = "iHD";
+    };
 
-    # Btrfs
-    btrfs-assistant
-    btrfs-progs
-  ];
+    # HW-related packages
+    systemPackages = with pkgs; [
+      # OpenRazer
+      openrazer-daemon
+      polychromatic
+
+      # Btrfs
+      btrfs-assistant
+      btrfs-progs
+    ];
+  };
 
   # Add Teto to openrazer group
   users.users.Teto.extraGroups = [ "openrazer" ];
