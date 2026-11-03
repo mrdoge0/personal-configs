@@ -36,7 +36,7 @@
       "i915.enable_guc=3"
 
       # Monitor TTY config
-      "video=DP-1:1920x1080@75"
+      "video=DP-2:1920x1080@75"
     ];
   };
 
