@@ -221,6 +221,9 @@ m_personalconf_action() {
 	cd "${OPWD}"
 }
 
+# Trigger personal confs actions
+[ -f "${HOME}/.pc/zshrc.sh" ] && m_personalconf_action
+
 # Trigger distro-based PM's action
 case ${SHDISTRO} in
 	Debian|Ubuntu|Mint|antiX|Pardus) m_apt_action;;
@@ -238,9 +241,6 @@ flatpak --version > /dev/null 2> /dev/null && m_flatpak_action
 
 # Trigger Snap action
 snap --version > /dev/null 2> /dev/null && m_snap_action
-
-# Trigger personal confs actions
-[ -f "${HOME}/.pc/zshrc.sh" ] && m_personalconf_action
 
 # Exit
 m_print_header 'Done, enjoy.'
