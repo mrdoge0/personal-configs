@@ -557,6 +557,8 @@ in
       lsd
       nixfmt
       openssl
+      pciutils
+      psmisc
       usbutils
       vulkan-tools
 
