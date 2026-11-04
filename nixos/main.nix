@@ -511,6 +511,8 @@ in
         "Teto"
         "AllRealUsers"
         "wheel"
+        "video"
+        "render"
         "networkmanager"
         "wireshark"
         "kvm"
