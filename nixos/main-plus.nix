@@ -56,7 +56,7 @@ in
   users.users.Guest = {
     isNormalUser = true;
     uid = 1001;
-    extraGroups = [ "AllRealUsers" ];
+    extraGroups = [ "AllRealUsers" "video" "render" ];
     home = "/home/Guest";
     shell = pkgs.zsh;
     password = "1234";
