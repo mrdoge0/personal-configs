@@ -34,6 +34,11 @@ in
 
     # virt-manager
     virt-manager.enable = true;
+
+    # OBS Studio
+    obs-studio = {
+      enable = true;
+    };
   };
 
   # Virtualization and containerization
