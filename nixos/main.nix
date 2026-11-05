@@ -334,6 +334,7 @@ in
         libxcb-render-util
         libxcb-errors
         libxcb-cursor
+        icu
 
         # Codecs are fun
         sndio
