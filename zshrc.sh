@@ -58,6 +58,9 @@ for SC in '/usr/share/zsh/site-functions/zsh-autocomplete/zsh-autocomplete.plugi
 	[ -f "${SC}" ] && source "${SC}"
 done
 
+# Clean the junk ${SC} that has happened in the sourcing of Zsh plugins
+unset SC
+
 # Set accent color
 case "${SHDISTRO}" in
 	Android|Void|Mint|CachyOS|openSUSE) ACCENT='green'   ;;
@@ -67,9 +70,10 @@ case "${SHDISTRO}" in
 	antiX|Pardus)                       ACCENT='yellow'  ;;
 	macOS|Unknown|*)                    ACCENT='white'   ;;
 esac
+export ACCENT
 
 # Custom prompt
-PROMPT="%F{red}[%?]%f %F{$ACCENT}%n@%m%f %F{white}%~%f > "
+export PROMPT="%F{red}[%?]%f %F{$ACCENT}%n@%m%f %F{white}%~%f > "
 
 # Set Fastfetch command
 case "${SHDISTRO}" in
@@ -80,6 +84,10 @@ esac
 # Do Fastfetch command override if set in environment
 [ ! -z "${FASTFETCH_COMMAND_OVERRIDE}" ] && FASTFETCH_COMMAND="${FASTFETCH_COMMAND_OVERRIDE}"
 
+# Export FASTFETCH_COMMAND
+export FASTFETCH_COMMAND
+unset FASTFETCH_COMMAND_OVERRIDE
+
 # Add (personal configs dir)/bin to PATH
 export PATH="${PATH}:$(dirname ${0}:A)/bin"
 
@@ -89,6 +97,7 @@ if which 'lsd' > /dev/null; then
 else
 	LS_COMMAND='ls -lha --color=auto'
 fi
+export LS_COMMAND
 
 # LS aliases
 alias ls="${LS_COMMAND}"
