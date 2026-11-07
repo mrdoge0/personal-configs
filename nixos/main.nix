@@ -8,6 +8,7 @@
   ...
 }:
 
+# Fetch external stuff
 let
   # Fetch nix-flatpak
   nix-flatpak = builtins.fetchGit { url = "https://github.com/gmodena/nix-flatpak"; };
@@ -23,6 +24,7 @@ let
   # Fetch the MangoBar HM Flake
   mangobar = builtins.getFlake "github:mangowm/mangobar/main";
 in
+
 {
   # Imports
   imports = [
@@ -66,13 +68,24 @@ in
   time.timeZone = "Europe/Istanbul";
 
   # Language time
+  console.useXkbConfig = true;
   i18n = {
     defaultLocale = "tr_TR.UTF-8";
     extraLocales = [
       "en_US.UTF-8/UTF-8"
     ];
+    extraLocaleSettings = {
+      LC_ADDRESS        = "tr_TR.UTF-8";
+      LC_IDENTIFICATION = "tr_TR.UTF-8";
+      LC_MEASUREMENT    = "tr_TR.UTF-8";
+      LC_MONETARY       = "tr_TR.UTF-8";
+      LC_NAME           = "tr_TR.UTF-8";
+      LC_NUMERIC        = "tr_TR.UTF-8";
+      LC_PAPER          = "tr_TR.UTF-8";
+      LC_TELEPHONE      = "tr_TR.UTF-8";
+      LC_TIME           = "tr_TR.UTF-8";
+    };
   };
-  console.useXkbConfig = true;
 
   # Services
   services = {
@@ -80,6 +93,7 @@ in
     xserver = {
       enable = true;
       xkb.layout = "tr";
+      excludePackages = [ pkgs.xterm ];
     };
 
     # GVFS and udisks2
@@ -236,20 +250,84 @@ in
 
       # Let's declare the essential settings
       extraOpts = {
+        # Pretty core privacy stuff
         "BrowserSignin" = "0";
         "SyncDisabled" = true;
+
+        # Thanks, I use a dedicated password manager
         "PasswordManagerEnabled" = false;
+
+        # Spell check
         "SpellcheckEnabled" = true;
         "SpellcheckLanguage" = [
           "tr"
           "en-US"
         ];
+
+        # PWAs
         "WebAppInstallForceList" = [
+          # Proton Pass
           {
             "custom_name" = "Proton Pass";
             "create_desktop_shortcut" = true;
             "default_launch_container" = "window";
             "url" = "https://pass.proton.me";
+          }
+
+          # Proton Mail
+          {
+            "custom_name" = "Proton Mail";
+            "create_desktop_shortcut" = true;
+            "default_launch_container" = "window";
+            "url" = "https://mail.proton.me";
+          }
+
+          # Proton Calendar
+          {
+            "custom_name" = "Proton Calendar";
+            "create_desktop_shortcut" = true;
+            "default_launch_container" = "window";
+            "url" = "https://calendar.proton.me";
+          }
+
+          # Proton Drive
+          {
+            "custom_name" = "Proton Drive";
+            "create_desktop_shortcut" = true;
+            "default_launch_container" = "window";
+            "url" = "https://drive.proton.me";
+          }
+
+          # Mistral Vibe
+          {
+            "custom_name" = "Mistral Vibe";
+            "create_desktop_shortcut" = true;
+            "default_launch_container" = "window";
+            "url" = "https://chat.mistral.ai";
+          }
+
+          # Reddit
+          {
+            "custom_name" = "Reddit";
+            "create_desktop_shortcut" = true;
+            "default_launch_container" = "window";
+            "url" = "https://reddit.com";
+          }
+
+          # YouTube
+          {
+            "custom_name" = "YouTube";
+            "create_desktop_shortcut" = true;
+            "default_launch_container" = "window";
+            "url" = "https://youtube.com";
+          }
+
+          # GutHib
+          {
+            "custom_name" = "GitHub";
+            "create_desktop_shortcut" = true;
+            "default_launch_container" = "window";
+            "url" = "https://github.com";
           }
         ];
       };
@@ -264,6 +342,7 @@ in
         "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
         "cpbiigflocpkmbclhjndgfalelmegokd" # Random YT no dubbing extension
         "fgmjlmbojbkmdpofahffgcpkhkngfpef" # Startpage
+        "cofdbpoegempjloogbagkncekinflcnj" # DeepL
       ];
     };
 
@@ -279,15 +358,15 @@ in
 
       # it's a nice idea to declare all your essential vscode extensions beforehand
       extensions = with pkgs.vscode-extensions; [
-        ms-python.python
-        zainchen.json
-        ms-pyright.pyright
-        redhat.java
-        redhat.vscode-xml
-        redhat.vscode-yaml
-        ms-dotnettools.csharp
-        github.github-vscode-theme
-        ms-vscode.cpptools
+        ms-python.python           # Python
+        zainchen.json              # JSON
+        ms-pyright.pyright         # Pyright (Python Linter)
+        redhat.java                # Java
+        redhat.vscode-xml          # XML
+        redhat.vscode-yaml         # YAML
+        ms-dotnettools.csharp      # C#
+        github.github-vscode-theme # GitHub Color Theme
+        ms-vscode.cpptools         # C/C++
       ];
     };
 
@@ -558,6 +637,7 @@ in
       erofs-utils
       fastfetch
       lsd
+      mesa-demos
       nixfmt
       openssl
       pciutils
