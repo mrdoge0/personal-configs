@@ -103,6 +103,7 @@ m_pacman_action() {
 	esac
 	m_exec_cmd 'pacman -Qdtq | pacman -Rs -' --no-exit-if-fail
 
+	unset UCMD
 	return 0
 }
 
@@ -192,55 +193,80 @@ m_snap_action() {
 m_personalconf_action() {
 	m_print_header 'Updating the personal configs repo...'
 
-	# cd to .pc
     OPWD="$(pwd)"
 	cd "${HOME}/.pc"
 
-	# revoke +x to bin/*
 	for F in bin/*; do
 		m_exec_cmd "chmod -x $(realpath ${F})"
 	done
 
-	# get zshrc.sh content to compare later
-	OZRC="$(cat ./zshrc.sh)"
+	ISNIXOS='false'
+	case ${SHDISTRO} in
+		NixOS) ISNIXOS='true' ;;
+		*)     true ;;
+	esac
 
-	# pull new changes
+	OZRC="$(cat ./zshrc.sh)"
+	${ISNIXOS} && ONIX="$(cat ./nixos/*.nix)"
+
 	m_exec_cmd 'git pull'
 
-	# regrant +x to bin/*
 	for F in bin/*; do
 		m_exec_cmd "chmod +x $(realpath ${F})"
 	done
 
-	# compare zshrc.sh
-	if [ "$(cat ./zshrc.sh)" != "${OZRC}" ]; then
-		echo " - Notice: zshrc has been changed, recommended to reopen the shells."
-	fi
+	[ "$(cat ./zshrc.sh)" != "${OZRC}" ] && echo " - Notice: zshrc has been changed, recommended to reopen the shells."
+	${ISNIXOS} && [ "$(cat ./nixos/*.nix)" != "${ONIX}" ] && echo " - Notice: NixOS configs have been changed, recommended to rebuild your system."
 
-	# cd back to old pwd
 	cd "${OPWD}"
+
+	unset OPWD
+	unset OZRC
+	unset F
+	unset ONIX
+	unset ISNIXOS
+	return 0
 }
 
-# Trigger personal confs actions
-[ -f "${HOME}/.pc/zshrc.sh" ] && m_personalconf_action
+# if an action is specified or not
+if [ ! -z "${1}" ]; then
+	# do accordingly
+	case ${1} in
+		conf|pc)   m_personalconf_action;;
+		apt)       m_apt_action;;
+		pacman|pm) m_pacman_action;;
+		portage|e) m_portage_action;;
+		apk|alp)   m_apk_action;;
+		xbps|void) m_xbps_action;;
+		nix|nixos) m_nixos_action;;
+		termux)    m_termux_action;;
+		flatpak)   m_flatpak_action;;
+		snap)      m_snap_action;;
+		*)         m_print_header 'Action ERROR: Invalid action.'
+		           exit 1;;
+	esac
+else
+	# Trigger personal confs actions
+	[ -f "${HOME}/.pc/zshrc.sh" ] && m_personalconf_action
 
-# Trigger distro-based PM's action
-case ${SHDISTRO} in
-	Debian|Ubuntu|Mint|antiX|Pardus) m_apt_action;;
-	Arch|CachyOS)                    m_pacman_action;;
-	Gentoo)                          m_portage_action;;
-	Alpine)                          m_apk_action;;
-	Void)                            m_xbps_action;;
-	NixOS)                           m_nixos_action;;
-	Android)                         m_termux_action;;
-	Fedora|Nobara|openSUSE|*)        m_print_header 'PM action ERROR: Not implemented yet for your distro';;
-esac
+	# Trigger distro-based PM's action
+	case ${SHDISTRO} in
+		Debian|Ubuntu|Mint|antiX|Pardus) m_apt_action;;
+		Arch|CachyOS)                    m_pacman_action;;
+		Gentoo)                          m_portage_action;;
+		Alpine)                          m_apk_action;;
+		Void)                            m_xbps_action;;
+		NixOS)                           m_nixos_action;;
+		Android)                         m_termux_action;;
+		Fedora|Nobara|openSUSE|*)        m_print_header 'PM action ERROR: Not implemented yet for your distro';;
+	esac
 
-# Trigger flatpak action
-flatpak --version > /dev/null 2> /dev/null && m_flatpak_action
+	# Trigger flatpak action
+	flatpak --version > /dev/null 2> /dev/null && m_flatpak_action
 
-# Trigger Snap action
-snap --version > /dev/null 2> /dev/null && m_snap_action
+	# Trigger Snap action
+	snap --version > /dev/null 2> /dev/null && m_snap_action
+fi
 
 # Exit
 m_print_header 'Done, enjoy.'
