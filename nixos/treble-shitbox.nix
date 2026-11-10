@@ -12,7 +12,7 @@
   # Boot stuff
   boot = {
     # Use the latest kernel
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_testing;
 
     # Use the systemd-boot boot manager
     loader = {
