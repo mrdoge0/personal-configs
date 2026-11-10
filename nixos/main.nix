@@ -628,9 +628,6 @@ in
       polkit_gnome
       xdg-user-dirs
 
-      # Python
-      python3
-
       # Terminal programs
       binutils
       e2fsprogs
@@ -638,10 +635,12 @@ in
       fastfetch
       lsd
       mesa-demos
+      nerdfetch
       nixfmt
       openssl
       pciutils
       psmisc
+      python3
       usbutils
       vulkan-tools
 
