@@ -79,6 +79,12 @@
 
     # BlueMan (potentially the worst BT client, but..)
     blueman.enable = true;
+
+    # Extra WirePlumber config to enforce A2DP
+    pipewire.wireplumber.extraConfig."60-bluez-a2dp-only" = {
+      "monitor.bluez.properties"."bluez5.roles" = [ "a2dp_sink" "a2dp_source" ];
+      "wireplumber.settings"."bluetooth.autoswitch-to-headset-profile" = false;
+    };
   };
 
   # HW
@@ -113,7 +119,7 @@
   # Environment
   environment = {
     # Vars
-    sessionVariables = {
+    sessionVariables = rec {
       # Intel Arc: use Intel VAAPI
       LIBVA_DRIVER_NAME = "iHD";
     };
