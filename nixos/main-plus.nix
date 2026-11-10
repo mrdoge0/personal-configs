@@ -8,10 +8,12 @@
   ...
 }:
 
+# Fetch more extarnal stuff
 let
   # Hyper Simple Flakes Collection
   hypersimple-flakes-collection = builtins.getFlake "github:mrdoge0/hypersimple-flakes-collection/main";
 in
+
 {
   # Services
   services = {
@@ -74,16 +76,22 @@ in
   # More packages
   environment.systemPackages = with pkgs; [
     # MangoHud
-    (mangohud.overrideAttrs (old: {
-      patches = (old.patches or [ ]) ++ [
-        (pkgs.fetchpatch {
-          url = "https://raw.githubusercontent.com/mrdoge0/personal-configs/refs/heads/main/gentoo/patches/games-util/mangohud/mangohud-0.8.4-ram_text-vram_text.patch";
-          hash = "sha256-4fVzyc+VaWH3NvistZPP5UsetSth2RbIn2pkr25QuA0=";
-        })
-      ];
-    }))
+    (
+      mangohud.overrideAttrs (
+        old: {
+          patches = (old.patches or [ ]) ++ [
+            (
+              pkgs.fetchpatch {
+                url = "https://raw.githubusercontent.com/mrdoge0/personal-configs/refs/heads/main/gentoo/patches/games-util/mangohud/mangohud-0.8.4-ram_text-vram_text.patch";
+                hash = "sha256-4fVzyc+VaWH3NvistZPP5UsetSth2RbIn2pkr25QuA0=";
+              }
+            )
+          ];
+        }
+      )
+    )
 
-    # Gaming time
+    # Gaming time (*little* more intensive)
     heroic
 
     # Containers
