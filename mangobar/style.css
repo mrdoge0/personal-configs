@@ -1,0 +1,61 @@
+* {
+    font-family: "Adwaita Sans";
+    font-size: 11px;
+    font-weight: regular;
+}
+
+* {
+    color: #ffffff;
+    background-color: #0d1117;
+    padding: 0px 10px;
+    margin: 5px 1px;
+    border-radius: 100px;
+}
+
+#bar {
+    background: none;
+    margin: 5px 10px;
+}
+#bar.sel {
+    background: none;
+}
+
+#tags {
+    padding: 0px 13px;
+    margin: 0px 2px;
+}
+
+#tags.active {
+    background-color: #314687;
+}
+
+#tags.urgent {
+    background-color: #ab3416;
+}
+
+/* Layout symbol */
+#layout {
+    min-width: 34px;
+    margin: 5px 5px;
+}
+
+#cpu {
+    padding: 0px 15px;
+}
+
+#tray {
+    padding: 0px 15px;
+}
+
+menu {
+    border-color: #314687;
+    border-radius: 10px;
+    font-size: 11px;
+}
+menuitem {
+    color: #ffffff;
+}
+menuitem:hover {
+    color: #ffffff;
+    background-color: #69b2f6;
+}
