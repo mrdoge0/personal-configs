@@ -151,7 +151,7 @@ global_color = 0xb153a7ff
 overlay_color = 0x14a57cff
 
 # Wallpaper
-exec_once = "swaybg -i /HDD/Dosyalar/Resimler/migu.jpg -m fill"
+exec_once = "swaybg -i $(realpath $(source ${HOME}/.config/user-dirs.dirs && echo "${XDG_PICTURES_DIR}"))/Dosyalar/Resimler/migu.jpg -m fill"
 
 # Autostart
 exec_once = "kdeconnectd"
@@ -160,7 +160,7 @@ exec_once = "blueman-applet"
 
 # Keyboard binds
 [bind.default]
-"SUPER+SHIFT+c" = "spawn_shell,mmsg dispatch reload_config && systemctl --user restart mangobar"
+"SUPER+SHIFT+c" = "spawn_shell,mmsg dispatch reload_config && systemctl --user restart mangobar && swaync-client -R && swaync-client -rs"
 "SUPER+D" = "spawn,rofi -show drun"
 "SUPER+T" = "spawn,kitty"
 "SUPER+C" = "spawn,chromium"
