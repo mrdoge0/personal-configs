@@ -1,0 +1,91 @@
+#!/usr/bin/env bash
+# The ultimate Rofi-based shutdown menu for tiling WM setups
+
+# Sanity checks
+echo ' - Checking for rofi (required dep)...'
+if which rofi > /dev/null 2> /dev/null; then
+	echo '  + Success'
+else
+	echo '  ! Rofi is not installed. Rofi is essential for this script. Please install Rofi and try again.'
+	exit 3
+fi
+echo ' - Checking for zenity (optional dep)...'
+if which zenity > /dev/null 2> /dev/null; then
+	echo '  + Success'
+else
+	echo '  ! Zenity is not installed. Error messages will not be graphical.'
+fi
+
+# Detect language and set strings based on it
+case $(echo ${LANG} | cut -d'_' -f1) in
+	tr)   # Turkish
+	      M_TITLE='Ne yapacaksın?'
+	      M_SHUTDOWN='Kapat'
+	      M_REBOOT='Yeniden başlat'
+	      M_LOGOUT='Oturumu kapat'
+	      M_LOCK='Kilitle'
+	      ;;
+	en|*) # English (and fallback)
+	      M_TITLE='What to do?'
+	      M_SHUTDOWN='Shutdown'
+	      M_REBOOT='Reboot'
+	      M_LOGOUT='Logout'
+	      M_LOCK='Lock'
+	      ;;
+esac
+
+# verbose
+echo " - String: M_TITLE = ${M_TITLE}"
+echo " - String: M_SHUTDOWN = ${M_SHUTDOWN}"
+echo " - String: M_REBOOT = ${M_REBOOT}"
+echo " - String: M_LOGOUT = ${M_LOGOUT}"
+echo " - String: M_LOCK = ${M_LOCK}"
+
+# Run the menu
+M_DIAG_CMD="echo \"${M_SHUTDOWN}|${M_REBOOT}|${M_LOGOUT}|${M_LOCK}\" | rofi -sep \"|\" -dmenu -i -p \"${M_TITLE}\" -tokenize -disable-history"
+echo " > ${M_DIAG_CMD}"
+M_DIAG=$(eval ${M_DIAG_CMD})
+echo " - Dialog result: ${M_DIAG}"
+
+# Check if systemd or not (will be needed on shutdown and reboot)
+if [ -d /run/systemd/system ]; then
+	M_IS_SYSTEMD='true'
+	echo ' - OS uses systemd'
+else
+	M_IS_SYSTEMD='false'
+	echo ' - OS uses a non-systemd init'
+fi
+
+# Actions based on the choosen action
+case ${M_DIAG} in
+	${M_SHUTDOWN})	# Shutdown
+	        	if ${M_IS_SYSTEMD}; then
+				echo ' > systemctl poweroff'
+				systemctl poweroff || exit 50
+			else
+				echo ' > poweroff'
+				poweroff || exit 50
+			fi;;
+	${M_REBOOT})	# Reboot
+			if ${M_IS_SYSTEMD}; then
+				echo ' > systemctl reboot'
+				systemctl reboot || exit 50
+			else
+				echo ' > reboot'
+				reboot || exit 50
+			fi;;
+	${M_LOGOUT})	# Logout
+			case ${DESKTOP_SESSION} in
+				mango)		echo ' > mmsg dispatch quit' && mmsg dispatch quit || exit 50;;
+				sway)		echo ' > swaymsg quit' && swaymsg quit || exit 50;;
+				*)		echo ' ! Logout function not implemented yet for your DE/WM.'
+						zenity --error --text 'Logout function not inplemented yet for your DE/WM.'
+						exit 50;;
+			esac;;
+	${M_LOCK})	# Lock (will assume swaylock)
+			echo ' > swaylock-custom'
+			swaylock-custom || exit 50;;
+	*)		# Nothing
+			echo ' - Nothing to choose, nothing to do.'
+			exit 0;;
+esac
