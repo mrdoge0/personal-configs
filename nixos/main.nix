@@ -650,8 +650,8 @@ in
       pavucontrol
       rofi
       swaybg
+      swaylock-plugin
       swaynotificationcenter
-      wlogout
 
       # GNOME stuff
       baobab
@@ -661,6 +661,7 @@ in
       lorem
       loupe
       nautilus
+      zenity
 
       # Browsers
       chromium
