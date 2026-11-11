@@ -1,0 +1,2 @@
+// colors will be borked if i just use theme.rasi directly as config.rasi
+@theme "./theme.rasi"
