@@ -28,7 +28,7 @@
 			"type": "kernel",
 			"key": "┣ 󰌽 ",
 			"keyColor": "green",
-			"format": "{release}"
+			"format": "{sysname} {release}"
 		},
 
 		{
