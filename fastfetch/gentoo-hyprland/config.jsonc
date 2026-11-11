@@ -30,7 +30,7 @@
 			"type": "kernel",
 			"key": "┣ 󰌽 ",
 			"keyColor": "magenta",
-			"format": "{release}"
+			"format": "{sysname} {release}"
 		},
 
 		{
