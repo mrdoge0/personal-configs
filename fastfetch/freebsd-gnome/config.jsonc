@@ -23,14 +23,14 @@
 			"type": "kernel",
 			"key": "┏ 󰣠 ",
 			"keyColor": "red",
-			"format": "{release}"
+			"format": "{sysname} {release}"
 		},
 
 		{
 			"type": "packages",
 			"key": "┣ 󰏓 ",
 			"keyColor": "red",
-			"format": "{dpkg} (APT) | {flatpak-all} (Flatpak)"
+			"format": "{pkg} (FreeBSD PKG)"
 		},
 
 		{
