@@ -15,6 +15,22 @@ if which zenity > /dev/null 2> /dev/null; then
 else
 	echo '  ! Zenity is not installed. Error messages will not be graphical.'
 fi
+echo ' - Checking for swaylock (optional dep)...'
+if which swaylock > /dev/null 2> /dev/null; then
+	echo '  + Success'
+	SWAYLOCK_USABLE='true'
+else
+	echo '  ! SwayLock is not installed. Screen locking function will not be usable.'
+	SWAYLOCK_USABLE='false'
+fi
+echo ' - Checking for zenity (optional dep)...'
+if which swaylock-custom > /dev/null 2> /dev/null; then
+	echo '  + Success'
+	SWAYLOCK_USABLE='true'
+else
+	echo '  ! SwayLock custom script is not installed. Screen locking function will not be usable.'
+	SWAYLOCK_USABLE='false'
+fi
 
 # Detect language and set strings based on it
 case $(echo ${LANG} | cut -d'_' -f1) in
@@ -83,6 +99,7 @@ case ${M_DIAG} in
 						exit 50;;
 			esac;;
 	${M_LOCK})	# Lock (will assume swaylock)
+			${SWAYLOCK_USABLE} || echo ' ! SwayLock is not usable.' && zenity --error --text 'SwayLock is not usable.' && exit 50
 			echo ' > swaylock-custom'
 			swaylock-custom || exit 50;;
 	*)		# Nothing
