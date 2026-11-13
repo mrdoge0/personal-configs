@@ -599,7 +599,7 @@ in
       # Main user config
       isNormalUser = true;
       uid = 1000;
-      description = "Kasane Teto SV1"
+      description = "Kasane Teto SV1";
       home = "/home/Teto";
       shell = pkgs.zsh;
 
