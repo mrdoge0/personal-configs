@@ -509,6 +509,7 @@ in
       swaylock-plugin.text = ''
         auth include login
       '';
+    };
   };
 
   # Qt5/6 stuff
