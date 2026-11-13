@@ -63,43 +63,42 @@ in
     docker.enable = true;
   };
 
-  # Guest (the arbitrary user account w/ the minimum privileges)
-  users.users.Guest = {
-    isNormalUser = true;
-    uid = 1001;
-    extraGroups = [ "AllRealUsers" "video" "render" ];
-    home = "/home/Guest";
-    shell = pkgs.zsh;
-    password = "1234";
+  # Users
+  users.users = {
+    # A few more packages for Teto
+    Teto.packages = with pkgs; [
+      # Gaming time (*little* more intensive)
+      heroic
+
+      # Containers
+      boxbuddy
+      distrobox
+
+      # Slop Upscaler
+      upscayl
+    ];
+
+    # Guest (the arbitrary user account w/ the minimum privileges)
+    Guest = {
+      # Main config
+      isNormalUser = true;
+      uid = 1001;
+      extraGroups = [ "AllRealUsers" "video" "render" ];
+      home = "/home/Guest";
+      shell = pkgs.zsh;
+
+      # OPSEC level: non-existent (/s)
+      password = "1234";
+    };
   };
 
-  # More packages
+  # More packages for everybody
   environment.systemPackages = with pkgs; [
     # MangoHud
-    (
-      mangohud.overrideAttrs (
-        old: {
-          patches = (old.patches or [ ]) ++ [
-            (
-              pkgs.fetchpatch {
-                url = "https://raw.githubusercontent.com/mrdoge0/personal-configs/refs/heads/main/gentoo/patches/games-util/mangohud/mangohud-0.8.4-ram_text-vram_text.patch";
-                hash = "sha256-4fVzyc+VaWH3NvistZPP5UsetSth2RbIn2pkr25QuA0=";
-              }
-            )
-          ];
-        }
-      )
-    )
-
-    # Gaming time (*little* more intensive)
-    heroic
-
-    # Containers
-    boxbuddy
-    distrobox
-
-    # Slop Upscaler
-    upscayl
+    ( mangohud.overrideAttrs ( old: { patches = (old.patches or [ ]) ++ [ ( pkgs.fetchpatch {
+      url = "https://raw.githubusercontent.com/mrdoge0/personal-configs/refs/heads/main/gentoo/patches/games-util/mangohud/mangohud-0.8.4-ram_text-vram_text.patch";
+      hash = "sha256-4fVzyc+VaWH3NvistZPP5UsetSth2RbIn2pkr25QuA0=";
+    } ) ]; } ) )
 
     # Legacy Launcher (my (or Mistral's) own vibecoded flake since nixpkgs will never publish pirated stuff :D)
     hypersimple-flakes-collection.packages.x86_64-linux.legacy-launcher
