@@ -59,6 +59,9 @@ in
       };
     };
 
+    # Spice USB Redirection
+    spiceUSBRedirection.enable = true;
+
     # Docker
     docker.enable = true;
   };
