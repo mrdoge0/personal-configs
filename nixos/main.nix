@@ -495,10 +495,20 @@ in
     corefonts
   ];
 
-  # Polkit
-  security.polkit = {
-    enable = true;
-    enablePkexecWrapper = true;
+  # Secret Services
+  security = {
+    # Polkit
+    polkit = {
+      enable = true;
+      enablePkexecWrapper = true;
+    };
+
+    # PAM (custom rules)
+    pam.services = {
+      # Fix swaylock-plugin's password mechanism being borked
+      swaylock-plugin.text = ''
+        auth include login
+      '';
   };
 
   # Qt5/6 stuff
