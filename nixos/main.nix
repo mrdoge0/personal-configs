@@ -585,8 +585,14 @@ in
   users = {
     # Teto (my main user)
     users.Teto = {
+      # Main user config
       isNormalUser = true;
       uid = 1000;
+      description = "Kasane Teto SV1"
+      home = "/home/Teto";
+      shell = pkgs.zsh;
+
+      # Groups
       extraGroups = [
         "Teto"
         "AllRealUsers"
@@ -600,8 +606,57 @@ in
         "input"
         "adbusers"
       ];
-      home = "/home/Teto";
-      shell = pkgs.zsh;
+
+      # Packages that I don't want Guest to have
+      packages = with pkgs; [
+        # Terminal programs
+        binutils
+        e2fsprogs
+        erofs-utils
+        mesa-demos
+        nerdfetch
+        nixfmt
+        pciutils
+        psmisc
+        usbutils
+        vulkan-tools
+
+        # Tor Browser
+        tor-browser
+
+        # Obsidian
+        obsidian
+
+        # Gaming time (but not that intensive)
+        supertuxkart
+
+        # Telegram
+        materialgram
+
+        # Data recovery (cus i still have a dead hdd to rescue data from)
+        testdisk-qt
+
+        # VPN
+        proton-vpn
+
+        # Development
+        android-studio
+        android-tools
+        edl
+        github-cli
+        heimdall
+        scrcpy
+
+        # System info tools
+        cpu-x
+        furmark
+        kdiskmark
+        waycheck
+
+        # Productive programs
+        gimp-with-plugins
+        krita
+      ];
     };
 
     # Groups
@@ -629,20 +684,14 @@ in
       xdg-user-dirs
 
       # Terminal programs
-      binutils
-      e2fsprogs
-      erofs-utils
       fastfetch
       lsd
-      mesa-demos
-      nerdfetch
-      nixfmt
       openssl
-      pciutils
-      psmisc
       python3
-      usbutils
-      vulkan-tools
+      rar
+      unrar
+      unzip
+      zip
 
       # Tiling WM Plugins and Kitty terminal
       grim
@@ -663,12 +712,8 @@ in
       nautilus
       zenity
 
-      # Browsers
+      # Chromium
       chromium
-      tor-browser
-
-      # Obsidian
-      obsidian
 
       # Qt customization
       kdePackages.qt6ct
@@ -676,29 +721,8 @@ in
       libsForQt5.qt5ct
       libsForQt5.qtstyleplugin-kvantum
 
-      # Productive programs
-      gimp-with-plugins
-      krita
-
-      # Gaming time (but not that intensive)
-      supertuxkart
-
       # Wine
       wineWow64Packages.stagingFull
-
-      # Data recovery (cus i still have a dead hdd to rescue data from)
-      testdisk-qt
-
-      # VPN
-      proton-vpn
-
-      # Development
-      android-studio
-      android-tools
-      edl
-      github-cli
-      heimdall
-      scrcpy
 
       # Themes
       adw-gtk3
@@ -706,24 +730,11 @@ in
       catppuccin-sddm
       morewaita-icon-theme
 
-      # Archiving tools
-      unrar
-      unzip
-      rar
-      zip
-
       # Media player
       vlc
 
-      # System info tools
-      cpu-x
-      furmark
-      kdiskmark
+      # Task manager
       mission-center
-      waycheck
-
-      # Telegram
-      materialgram
     ];
   };
 }
