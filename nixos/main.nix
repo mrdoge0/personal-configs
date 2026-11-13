@@ -21,6 +21,11 @@ let
     import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-23.05.tar.gz")
       { };
 
+  # Fetch NixOS 26.05
+  pkgs2605 =
+    import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-26.05.tar.gz")
+      { };
+
   # Fetch the MangoBar HM Flake
   mangobar = builtins.getFlake "github:mangowm/mangobar/main";
 in
@@ -439,7 +444,7 @@ in
         libbs2b
         lilv
         soxr
-        libdvdnav_4_2_1
+        pkgs2605.libdvdnav_4_2_1
         libraw1394
         libavc1394
         libiec61883
