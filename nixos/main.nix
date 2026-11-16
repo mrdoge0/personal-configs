@@ -56,12 +56,18 @@ in
     };
   };
 
-  # Kernel parameters (common)
-  boot.kernelParams = [
-    "ignore_loglevel"
-    "earlyprintk"
-    "threadirqs"
-  ];
+  # Boot
+  boot = {
+    # Use the latest RC kernel
+    kernelPackages = pkgs.linuxPackages_testing;
+
+    # Kernel parameters (common)
+    kernelParams = [
+      "ignore_loglevel"
+      "earlyprintk"
+      "threadirqs"
+    ];
+  };
 
   # Networking
   networking = {
