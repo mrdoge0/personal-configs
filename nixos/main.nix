@@ -51,7 +51,6 @@ in
     settings = {
       auto-optimise-store = true;
       experimental-features = [
-        "nix-command"
         "flakes"
       ];
     };
@@ -64,9 +63,20 @@ in
     "threadirqs"
   ];
 
-  # NetworkManager
-  networking.networkmanager = {
-    enable = true;
+  # Networking
+  networking = {
+    # NetworkManager
+    networkmanager = {
+      enable = true;
+    };
+
+    # Override the DNS (since i want privacy in my dns, plus internet freedom sucks here in turkey)
+    nameservers = [
+      "9.9.9.9"          # Quad9 (IPv4 Primary)
+      "2620:fe::fe"      # Quad9 (IPv6 Primary)
+      "149.112.112.112"  # Quad9 (IPv4 Secondary)
+      "2620:fe::9"       # Quad9 (IPv6 Secondary)
+    ];
   };
 
   # Timezone
@@ -348,6 +358,7 @@ in
         "cpbiigflocpkmbclhjndgfalelmegokd" # Random YT no dubbing extension
         "fgmjlmbojbkmdpofahffgcpkhkngfpef" # Startpage
         "cofdbpoegempjloogbagkncekinflcnj" # DeepL
+        "idebbjnfdpekgfagdggfangcgpeadllj" # SlopMute
       ];
     };
 
@@ -672,6 +683,9 @@ in
         # Productive programs
         gimp-with-plugins
         krita
+
+        # Discord
+        discord
       ];
     };
 
