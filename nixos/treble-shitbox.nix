@@ -8,6 +8,28 @@
   ...
 }:
 
+# This is the machine-specific config split for my main PC.
+
+# -- TARGET COMPUTER'S SPECS --
+#   - My custom desktop PC  -
+# CPU:         AMD Ryzen 5 1600AF
+# RAM:         16GB 3000MT/s DDR4 (Corsair Vengeance LPX 2x8GB)
+# Motherboard: GIGABYTE B450M S2H
+# dGPU:        Intel Arc A750 8GB Limited Edition
+# iGPU:        no iGPU
+# Storage:
+#   OS NVMe:   WD PC SN530 256GB
+#   Home SSD:  HI-LEVEL 120GB SATA
+#   Data HDD:  Toshiba 2TB 7200RPM 3.5"
+# CPU Cooler:  Thermalright Peerless Assasin 140 White
+# Case:        ASUS A21 Plus White
+# PSU:         MSI MAG A500DN (500W, 80+ White)
+# Monitor:     AOC G2260VWQ6 (21.5" 1080p 75Hz TN)
+# Keyboard:    Logitech K120
+# Mouse:       Razer DeathAdder Essential White
+# Headset:     HAVIT Gamenote Fuxi-H3
+# Bluetooth:   MERCUSYS MA530
+
 {
   # Boot stuff
   boot = {
