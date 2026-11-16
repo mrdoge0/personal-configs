@@ -11,10 +11,7 @@
 {
   # Boot stuff
   boot = {
-    # Use the latest kernel
-    kernelPackages = pkgs.linuxPackages_testing;
-
-    # Use the systemd-boot boot manager
+    # Use the systemd-boot bootloader
     loader = {
       efi.canTouchEfiVariables = true;
       timeout = 0;
