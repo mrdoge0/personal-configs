@@ -73,7 +73,12 @@ esac
 export ACCENT
 
 # Custom prompt
-export PROMPT="%F{red}[%?]%f %F{$ACCENT}%n@%m%f %F{white}%~%f > "
+if [ -z "${PROMPT_ADD}" ]; then
+	export PROMPT="%F{red}[%?]%f %F{$ACCENT}%n@%m%f %F{white}%~%f > "
+else
+	export PROMPT="%F{red}[%?]%f ${PROMPT_ADD} %F{$ACCENT}%n@%m%f %F{white}%~%f > "
+	export PROMPT_ADD
+fi
 
 # Set Fastfetch command
 case "${SHDISTRO}" in
