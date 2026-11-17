@@ -68,18 +68,24 @@ in
 
   # Users
   users.users = {
-    # A few more packages for Teto
-    Teto.packages = with pkgs; [
-      # Gaming time (*little* more intensive)
-      heroic
+    # Kasane Teto
+    Teto = {
+      # Add to the Docker group
+      extraGroups = [ "docker" ];
 
-      # Containers
-      boxbuddy
-      distrobox
+      # A few more packages for Teto
+      packages = with pkgs; [
+        # Gaming time (*little* more intensive)
+        heroic
 
-      # Slop Upscaler
-      upscayl
-    ];
+        # Containers
+        boxbuddy
+        distrobox
+
+        # AI Slop Upscaler
+        upscayl
+      ];
+    };
 
     # Guest (the arbitrary user account w/ the minimum privileges)
     Guest = {
@@ -88,7 +94,6 @@ in
       uid = 1001;
       extraGroups = [ "AllRealUsers" "video" "render" ];
       home = "/home/Guest";
-      shell = pkgs.zsh;
 
       # OPSEC level: non-existent (/s)
       password = "1234";
