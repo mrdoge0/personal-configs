@@ -41,22 +41,35 @@ in
   ];
 
   # Core Nix PM config
-  system.stateVersion = "26.05";
+  system = {
+    # Declaratively set the channel to NixOS Unstable
+    autoUpgrade.channel = "https://channels.nixos.org/nixos-unstable";
+
+    # It's okay to have the stateVersion as the latest stable (26.05) rather than the version that unstable is currently the beta of (26.11)
+    stateVersion = "26.05";
+  };
   nixpkgs.config = {
+    # Proprietary packages are a good idea because I'm not a femboy yet (though I'm on the path :D)
     allowUnfree = true;
+
+    # For some reason unstable won't build anymore w/o this
     problems.handlers."gtk+".broken = "warn";
   };
   nix = {
+    # Auto grabage collect is a good idea when your system drive is only 256GB
     gc.automatic = true;
+
     settings = {
+      # Again, auto garbage collection is a good idea
+      # (my updater script will garbage collect before a rebuild, so there always will be only the last two generations installed anyways)
       auto-optimise-store = true;
-      experimental-features = [
-        "flakes"
-      ];
+
+      # Enable flakes (no I do not use the "nix" command)
+      experimental-features = [ "flakes" ];
     };
   };
 
-  # Boot
+  # Kernel and boot
   boot = {
     # Use the latest RC kernel
     kernelPackages = pkgs.linuxPackages_testing;
@@ -91,10 +104,15 @@ in
   # Language time
   console.useXkbConfig = true;
   i18n = {
+    # yes i am turkish
     defaultLocale = "tr_TR.UTF-8";
+
+    # but i dont suck at english (and also steam likes en_US being installed)
     extraLocales = [
       "en_US.UTF-8/UTF-8"
     ];
+
+    # just in case for any potential locale bug on an app
     extraLocaleSettings = {
       LC_ADDRESS        = "tr_TR.UTF-8";
       LC_IDENTIFICATION = "tr_TR.UTF-8";
@@ -112,9 +130,20 @@ in
   services = {
     # X11/Wayland
     xserver = {
+      # obvious
       enable = true;
+
+      # turkish q keyboard
       xkb.layout = "tr";
+
+      # do not install xterm, nobody likes xterm
       excludePackages = [ pkgs.xterm ];
+
+      # RetroArch (weirdly, this is how you declare RetroArch in NixOS)
+      desktopManager.retroarch = {
+        enable = true;
+        package = pkgs.retroarch-free;
+      };
     };
 
     # GVFS and udisks2
