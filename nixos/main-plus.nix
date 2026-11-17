@@ -70,8 +70,8 @@ in
   users.users = {
     # Kasane Teto
     Teto = {
-      # Add to the Docker group
-      extraGroups = [ "docker" ];
+      # Add to the Docker and QEMU related groups
+      extraGroups = [ "docker" "kvm" "libvirtd" ];
 
       # A few more packages for Teto
       packages = with pkgs; [
