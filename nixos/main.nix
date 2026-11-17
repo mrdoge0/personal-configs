@@ -663,8 +663,6 @@ in
         "render"
         "networkmanager"
         "wireshark"
-        "kvm"
-        "libvirtd"
         "input"
         "adbusers"
       ];
