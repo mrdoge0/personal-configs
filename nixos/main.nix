@@ -796,8 +796,11 @@ in
       # Media player
       vlc
 
-      # Task manager
+      # Mission Center
       mission-center
+
+      # Switcheroo
+      switcheroo
     ];
   };
 }
