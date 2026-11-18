@@ -541,9 +541,16 @@ in
 
   # Fonts
   fonts.packages = with pkgs; [
-    nerd-fonts.fira-code
-    adwaita-fonts
+    # Microslop Core Fonts (for office prorams)
     corefonts
+
+    # Nerd fonts (NF variants of Fire Code and Geist Mono)
+    nerd-fonts.fira-code
+    nerd-fonts.geist-mono
+
+    # Adwaita Sans and Geist
+    adwaita-fonts
+    geist-font
   ];
 
   # Secret Services
