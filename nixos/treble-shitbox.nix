@@ -51,8 +51,9 @@
       "amd_iommu=on"
       "iommu=pt"
 
-      # Intel Arc: GuC on i915 driver (I have no idea will i915 or xe be used on Alchemist, so..)
-      "i915.enable_guc=3"
+      # Intel Arc: Ebforce "xe" driver (Performance sucks and I get GPU hangs in some games w/ "i915" (which is Alchemist's default))
+      "i915.force_probe=!56a1"
+      "xe.force_probe=56a1"
 
       # Monitor TTY config
       "video=DP-2:1920x1080@75"
@@ -89,6 +90,9 @@
 
   # Services
   services = {
+    # Fwupd
+    fwupd.enable = true;
+
     # Auto scrub BTRFS on HDD
     btrfs.autoScrub = {
       enable = true;
