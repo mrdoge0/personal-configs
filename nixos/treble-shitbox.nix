@@ -51,7 +51,7 @@
       "amd_iommu=on"
       "iommu=pt"
 
-      # Intel Arc: Ebforce "xe" driver (Performance sucks and I get GPU hangs in some games w/ "i915" (which is Alchemist's default))
+      # Intel Arc: Enforce "xe" driver (Performance sucks and I get GPU hangs in some games w/ "i915" (which is Alchemist's default))
       "i915.force_probe=!56a1"
       "xe.force_probe=56a1"
 
