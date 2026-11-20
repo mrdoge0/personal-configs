@@ -83,10 +83,7 @@
   };
 
   # Set up ZRAM
-  zramSwap = {
-    enable = true;
-    memoryMax = 12884901888;
-  };
+  zramSwap.memoryMax = 12884901888;
 
   # Services
   services = {
@@ -122,9 +119,6 @@
         vpl-gpu-rt
       ];
     };
-
-    # Intel Arc: it is an awesome idea to enable redist fw
-    enableRedistributableFirmware = true;
 
     # OpenRazer
     openrazer.enable = true;
