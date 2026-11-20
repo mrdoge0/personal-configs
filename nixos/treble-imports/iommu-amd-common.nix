@@ -11,7 +11,7 @@
 
 {
   # Import common IOMMU
-  imports = [ "./iommu-common.nix" ];
+  imports = [ ( toString ./. + "./iommu-common.nix" ) ];
 
   # AMD IOMMU on
   boot.kernelParams = [ "amd_iommu=on" ];
