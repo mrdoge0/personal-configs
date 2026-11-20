@@ -101,8 +101,14 @@ in
   # Timezone
   time.timeZone = "Europe/Istanbul";
 
-  # Enable redist FW
-  hardware.enableRedistributableFirmware = true;
+  # HW
+  hardware = {
+    # Enable redist FW
+    enableRedistributableFirmware = true;
+
+    # Common Mesa snippet
+    graphics = { enable = true; enable32Bit = true; };
+  };
 
   # Enable ZRAM
   zramSwap.enable = true;
