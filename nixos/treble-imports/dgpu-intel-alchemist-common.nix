@@ -11,7 +11,7 @@
 
 {
   # Import FWUPD
-  imports = [ ( toString ./. + "fwupd-common.nix" ) ];
+  imports = [ ( toString ./. + "/fwupd-common.nix" ) ];
   
   # Enforce "xe" driver for my Arc A750 LE
   # Performance sucks and I get GPU hangs in some games w/ "i915" (which is Alchemist's default)
