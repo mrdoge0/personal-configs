@@ -34,25 +34,25 @@
   # Import appropriate treble-imports fragments
   imports = [
     # Internal: BlueZ
-    "./treble-imports/bluetooth-common.nix"
+    ( toString ./. + "/treble-imports/bluetooth-common.nix" )
 
     # Internal: systemd-boot bootloader
-    "./treble-imports/bootloader-uefi-common.nix"
+    ( toString ./. + "/treble-imports/bootloader-uefi-common.nix" )
 
     # Internal: Full btrfs support
-    "./treble-imports/btrfs-common.nix"
+    ( toString ./. + "/treble-imports/btrfs-common.nix" )
 
     # Internal: Intel Alchemist dGPU (and it will import FWUPD as well)
-    "./treble-imports/dgpu-intel-alchemist-common.nix"
+    ( toString ./. + "/treble-imports/dgpu-intel-alchemist-common.nix" )
 
     # Internal: AMD IOMMU
-    "./treble-imports/iommu-amd-common.nix"
+    ( toString ./. + "/treble-imports/iommu-amd-common.nix" )
 
     # Internal: OpenRazer
-    "./treble-imports/razer-common.nix"
+    ( toString ./. + "/treble-imports/razer-common.nix" )
 
     # Internal: Enable discard for root (WD SN530 256GB)
-    "./treble-imports/root-is-ssd-common.nix"
+    ( toString ./. + "/treble-imports/root-is-ssd-common.nix" )
   ];
 
   # Kernel parameter for monitor resolution on TTY
