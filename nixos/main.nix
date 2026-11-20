@@ -101,6 +101,12 @@ in
   # Timezone
   time.timeZone = "Europe/Istanbul";
 
+  # Enable redist FW
+  hardware.enableRedistributableFirmware = true;
+
+  # Enable ZRAM
+  zramSwap.enable = true;
+
   # Language time
   console.useXkbConfig = true;
   i18n = {
