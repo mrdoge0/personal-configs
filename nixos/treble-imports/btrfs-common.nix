@@ -16,4 +16,7 @@
     enable = true;
     interval = "weekly";
   };
+
+  # Install Btrfs Assistant
+  environment.systemPackages = with pkgs; [ btrfs-assistant ];
 }
