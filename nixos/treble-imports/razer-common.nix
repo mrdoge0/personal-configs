@@ -17,7 +17,7 @@
   users.users.Teto.extraGroups = [ "openrazer" ];
 
   # Razer packages
-  systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     # OpenRazer
     openrazer-daemon
     polychromatic
