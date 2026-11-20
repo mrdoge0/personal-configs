@@ -690,8 +690,6 @@ in
       packages = with pkgs; [
         # Terminal programs
         binutils
-        e2fsprogs
-        erofs-utils
         mesa-demos
         nerdfetch
         nixfmt
@@ -699,6 +697,11 @@ in
         psmisc
         usbutils
         vulkan-tools
+
+        # FS progs
+        btrfs-progs
+        e2fsprogs
+        erofs-utils
 
         # Tor Browser
         tor-browser
