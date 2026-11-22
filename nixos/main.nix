@@ -732,7 +732,8 @@ in
         # Gaming time (but not that intensive)
         supertuxkart
 
-        # Telegram
+        # Telegram and WhatsCrapp clients
+        karere
         materialgram
 
         # Data recovery (cus i still have a dead hdd to rescue data from)
