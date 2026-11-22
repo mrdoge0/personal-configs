@@ -18,6 +18,7 @@
   boot.kernelParams = [ "i915.force_probe=!56a1" "xe.force_probe=56a1" ];
   
   # Alchemist-related Mesa snippet
+  # ("hardware.graphics.enable=true" and "hardware.graphics.enable32Bit=true" are (and expected to be) set in main as it's common accross all dGPU/iGPU brands and generations)
   hardware.graphics.extraPackages = with pkgs; [
     intel-compute-runtime
     intel-media-driver
