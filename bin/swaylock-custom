@@ -4,6 +4,9 @@
 # Gather the XDG user dirs
 source ${HOME}/.config/user-dirs.dirs
 
+# Config file
+MCONF="${HOME}/.config/swaylock-custom.conf"
+
 # Bootstrap defaults of some vars
 WALLPAPER="${XDG_PICTURES_DIR}/migu.jpg"
 COLOR_MAIN='0d1117ff'
@@ -19,15 +22,15 @@ case "${1}" in
   '--help'|'-h'|'-?')
     tee <<EOF
 # Usage
-(Normal) : Run swaylock-custom normally
---help | -h | -? : Show this help
---mkconfig | -M : Create a reference config out of the defaults
+(Normal)               : Run swaylock-custom normally
+--help | -h | -?       : Show this help
+--mkconfig | -M        : Create a reference config out of the defaults
 
 # Dependencies
 The "swaylock-plugin" fork of Swaylock
 
 # Configuring
-File: ~/.config/swaylock-custom.conf
+File: ${MCONF}
 Variables:
   WALLPAPER            : (File path)              Image to be used as the lockscreen wallpaper
                                                     (Default: "\${XDG_PICTURES_DIR}/migu.jpg"
@@ -48,30 +51,30 @@ Variables:
 EOF
     exit 0;;
   '--mkconfig'|-M)
-    [ -f "${HOME}/.config/swaylock-custom.conf" ] && echo 'Notice: overwriting the existing swaylock-custom.conf'
-    tee "${HOME}/.config/swaylock-custom.conf" <<EOF > /dev/null
+    [ -f "${MCONF}" ] && echo 'Notice: overwriting the existing swaylock-custom.conf'
+    tee "${MCONF}" <<EOF > /dev/null
 # Wallpaper
-WALLPAPER="${XDG_PICTURES_DIR}/migu.jpg"
+WALLPAPER="${WALLPAPER}"
 
 # Colors
-COLOR_MAIN='0d1117ff'
-COLOR_CHECK='0d1117ff'
-COLOR_ERROR='ab3416ff'
-COLOR_TEXT='ffffffff'
+COLOR_MAIN="${COLOR_MAIN}"
+COLOR_CHECK="${COLOR_CHECK}"
+COLOR_ERROR="${COLOR_ERROR}"
+COLOR_TEXT="${COLOR_TEXT}"
 
 # Font
-FONT_NAME='Geist'
-FONT_SIZE='13'
+FONT_NAME="${FONT_NAME}"
+FONT_SIZE="${FONT_SIZE}"
 
 # Custom swaylock-plugin arguments to append
-CUSTOM_SWAYLOCK_ARGS=''
+CUSTOM_SWAYLOCK_ARGS="${CUSTOM_SWAYLOCK_ARGS}"
 EOF
-    echo "New config file is in ${HOME}/.config/swaylock-custom.conf"
+    echo "New config file is in ${MCONF}"
     exit 0;;
 esac
 
 # Source the config if exists
-[ -f "${HOME}/.config/swaylock-custom.conf" ] && source "${HOME}/.config/swaylock-custom.conf"
+[ -f "${MCONF}" ] && source "${MCONF}"
 
 # Do the job
 swaylock-plugin \
@@ -89,7 +92,7 @@ swaylock-plugin \
   --ring-caps-lock-color "${COLOR_MAIN}" --inside-caps-lock-color "${COLOR_MAIN}" \
   --ring-ver-color "${COLOR_CHECK}" --inside-ver-color "${COLOR_CHECK}" \
   --ring-wrong-color "${COLOR_ERROR}" --inside-wrong-color "${COLOR_ERROR}" \
-  --image "${WALLPAPER}"
+  --image "${WALLPAPER}" ${CUSTOM_SWAYLOCK_ARGS}
 
 # Exit with swaylock's exit code
 exit ${?}
