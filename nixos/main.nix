@@ -99,9 +99,6 @@ in
     ];
   };
 
-  # Timezone
-  time.timeZone = "Europe/Istanbul";
-
   # HW
   hardware = {
     # Enable redist FW
@@ -114,30 +111,9 @@ in
   # Enable ZRAM
   zramSwap.enable = true;
 
-  # Language time
+  # Language time (common)
   console.useXkbConfig = true;
-  i18n = {
-    # yes i am turkish
-    defaultLocale = "tr_TR.UTF-8";
-
-    # but i dont suck at english (and also steam likes en_US being installed)
-    extraLocales = [
-      "en_US.UTF-8/UTF-8"
-    ];
-
-    # just in case for any potential locale bug on an app
-    extraLocaleSettings = {
-      LC_ADDRESS        = "tr_TR.UTF-8";
-      LC_IDENTIFICATION = "tr_TR.UTF-8";
-      LC_MEASUREMENT    = "tr_TR.UTF-8";
-      LC_MONETARY       = "tr_TR.UTF-8";
-      LC_NAME           = "tr_TR.UTF-8";
-      LC_NUMERIC        = "tr_TR.UTF-8";
-      LC_PAPER          = "tr_TR.UTF-8";
-      LC_TELEPHONE      = "tr_TR.UTF-8";
-      LC_TIME           = "tr_TR.UTF-8";
-    };
-  };
+  i18n.extraLocales = [ "en_US.UTF-8/UTF-8" ];
 
   # Services
   services = {
@@ -145,9 +121,6 @@ in
     xserver = {
       # obvious
       enable = true;
-
-      # turkish q keyboard
-      xkb.layout = "tr";
 
       # do not install xterm, nobody likes xterm
       excludePackages = [ pkgs.xterm ];
