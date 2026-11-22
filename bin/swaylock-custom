@@ -48,7 +48,7 @@ Variables:
 EOF
     exit 0;;
   '--mkconfig'|-M)
-    [ -f "${HOME}/.config/swaylock-custom.conf" ] && echo 'Notice: overwriting the existing swaylock-custom.conf
+    [ -f "${HOME}/.config/swaylock-custom.conf" ] && echo 'Notice: overwriting the existing swaylock-custom.conf'
     tee "${HOME}/.config/swaylock-custom.conf" <<EOF > /dev/null
 # Wallpaper
 WALLPAPER="${XDG_PICTURES_DIR}/migu.jpg"
