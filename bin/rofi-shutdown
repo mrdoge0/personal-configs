@@ -103,7 +103,7 @@ case ${M_DIAG} in
 						exit 50;;
 			esac;;
 	${M_LOCK})	# Lock (will assume swaylock)
-			${SWAYLOCK_USABLE} || echo ' ! SwayLock is not usable.' && zenity --error --text 'SwayLock is not usable.' && exit 50
+			! ${SWAYLOCK_USABLE} && echo ' ! SwayLock is not usable.' && zenity --error --text 'SwayLock is not usable.' && exit 50
 			echo ' > swaylock-custom'
 			swaylock-custom || exit 50;;
 	*)		# Nothing
