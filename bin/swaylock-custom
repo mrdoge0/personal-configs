@@ -1,0 +1,95 @@
+#!/usr/bin/env bash
+# Custom Swaylock script
+
+# Gather the XDG user dirs
+source ${HOME}/.config/user-dirs.dirs
+
+# Bootstrap defaults of some vars
+WALLPAPER="${XDG_PICTURES_DIR}/migu.jpg"
+COLOR_MAIN='0d1117ff'
+COLOR_CHECK='0d1117ff'
+COLOR_ERROR='ab3416ff'
+COLOR_TEXT='ffffffff'
+FONT_NAME='Geist'
+FONT_SIZE='13'
+CUSTOM_SWAYLOCK_ARGS=''
+
+# Help and MKConfig
+case "${1}" in
+  '--help'|'-h'|'-?')
+    tee <<EOF
+# Usage
+(Normal) : Run swaylock-custom normally
+--help | -h | -? : Show this help
+--mkconfig | -M : Create a reference config out of the defaults
+
+# Dependencies
+The "swaylock-plugin" fork of Swaylock
+
+# Configuring
+File: ~/.config/swaylock-custom.conf
+Variables:
+  WALLPAPER            : (File path)              Image to be used as the lockscreen wallpaper
+                                                    (Default: "\${XDG_PICTURES_DIR}/migu.jpg"
+  COLOR_MAIN           : (HTML color in RRGGBBAA) Regular circle color
+                                                    (default: 0d1117ff)
+  COLOR_CHECK          : (HTML color in RRGGBBAA) Circle color when checking the password
+                                                    (default: 0d1117ff)
+  COLOR_ERROR          : (HTML color in RRGGBBAA) Circle color when the password is wrong
+                                                    (default: ab3416ff)
+  COLOR_TEXT           : (HTML color in RRGGBBAA) Text color
+                                                    (default: ffffffff)
+  FONT_NAME            : (String)                 Font family name
+                                                    (default: Geist)
+  FONT_SIZE            : (Number)                 Font size
+                                                    (default: 13)
+  CUSTOM_SWAYLOCK_ARGS : (String)                 Custom arguments to append to the swaylock-plugin command
+                                                    (default: None)
+EOF
+    exit 0;;
+  '--mkconfig'|-M)
+    [ -f "${HOME}/.config/swaylock-custom.conf" ] && echo 'Notice: overwriting the existing swaylock-custom.conf
+    tee "${HOME}/.config/swaylock-custom.conf" <<EOF > /dev/null
+# Wallpaper
+WALLPAPER="${XDG_PICTURES_DIR}/migu.jpg"
+
+# Colors
+COLOR_MAIN='0d1117ff'
+COLOR_CHECK='0d1117ff'
+COLOR_ERROR='ab3416ff'
+COLOR_TEXT='ffffffff'
+
+# Font
+FONT_NAME='Geist'
+FONT_SIZE='13'
+
+# Custom swaylock-plugin arguments to append
+CUSTOM_SWAYLOCK_ARGS=''
+EOF
+    echo "New config file is in ${HOME}/.config/swaylock-custom.conf"
+    exit 0;;
+esac
+
+# Source the config if exists
+[ -f "${HOME}/.config/swaylock-custom.conf" ] && source "${HOME}/.config/swaylock-custom.conf"
+
+# Do the job
+swaylock-plugin \
+  --ignore-empty-password \
+  --show-failed-attempts \
+  --line-uses-inside\
+  --font "${FONT_NAME}" --font-size "${FONT_SIZE}" \
+  --text-color "${COLOR_TEXT}" \
+  --text-clear-color "${COLOR_TEXT}" \
+  --text-caps-lock-color "${COLOR_TEXT}" \
+  --text-ver-color "${COLOR_TEXT}" \
+  --text-wrong-color "${COLOR_TEXT}" \
+  --ring-color "${COLOR_MAIN}" --inside-color "${COLOR_MAIN}" \
+  --ring-clear-color "${COLOR_MAIN}" --inside-clear-color "${COLOR_MAIN}" \
+  --ring-caps-lock-color "${COLOR_MAIN}" --inside-caps-lock-color "${COLOR_MAIN}" \
+  --ring-ver-color "${COLOR_CHECK}" --inside-ver-color "${COLOR_CHECK}" \
+  --ring-wrong-color "${COLOR_ERROR}" --inside-wrong-color "${COLOR_ERROR}" \
+  --image "${WALLPAPER}"
+
+# Exit with swaylock's exit code
+exit ${?}
