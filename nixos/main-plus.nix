@@ -84,6 +84,9 @@ in
 
         # AI Slop Upscaler
         upscayl
+
+        # Kdenlive
+        kdePackages.kdenlive
       ];
     };
 
