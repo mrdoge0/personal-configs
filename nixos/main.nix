@@ -188,8 +188,11 @@ in
       wireplumber.enable = true;
       audio.enable = true;
       pulse.enable = true;
-      alsa.enable = true;
       jack.enable = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
     };
 
     # F(l)atpak
@@ -573,6 +576,9 @@ in
       enablePkexecWrapper = true;
     };
 
+    # RTKit (useful for PipeWire)
+    rtkit.enable = true;
+
     # PAM (custom rules)
     pam.services = {
       # Fix swaylock-plugin's password mechanism being borked
@@ -590,8 +596,22 @@ in
 
   # XDG Portal
   xdg.portal = {
+    # Obvious
     enable = true;
-    wlr.enable = true;
+
+    # I mean, Mango IS wlroots-based
+    wlr = {
+      # Obvious again
+      enable = true;
+
+      # Fix screencast on OBS and Discord
+      settings.screencast = {
+        chooser_type = "simple";
+        chooser_cmd = "${pkgs.slurp}/bin/slurp -f %o -or";
+      };
+    };
+
+    # Other supported portals (useful AF for flatpak)
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
       xdg-desktop-portal-generic
@@ -783,6 +803,7 @@ in
       kitty
       pavucontrol
       rofi
+      slurp
       swaybg
       swaylock-plugin
       swaynotificationcenter
