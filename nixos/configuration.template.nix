@@ -34,6 +34,9 @@ in
     # Repo:     Main
     "${personal-configs}/nixos/main.nix"
 
+    # Repo:     Localization and timezones (modify to switch them)
+    "${personal-configs}/nixos/locale.nix"
+
     # Repo:     Main Plus (comment to disable)
     "${personal-configs}/nixos/main-plus.nix"
   ];
