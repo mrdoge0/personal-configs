@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 # The ultimate Rofi-based shutdown menu for tiling WM setups
 
+# Have ~/.pc/bin in PATH
+# since zshrc normally supplies that path, it wont normally be in bash-based scripts
+PATH="${PATH}:${HOME}/.pc/bin"
+echo " - Using PATH: ${PATH}"
+
 # Sanity checks
 echo ' - Checking for rofi (required dep)...'
 if which rofi > /dev/null 2> /dev/null; then
