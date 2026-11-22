@@ -87,6 +87,7 @@ in
     # NetworkManager
     networkmanager = {
       enable = true;
+      dns = "none";
     };
 
     # Override the DNS (since i want privacy in my dns, plus internet freedom sucks here in turkey)
