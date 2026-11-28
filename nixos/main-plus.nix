@@ -29,6 +29,8 @@ in
       # services.ollama.package is expected from the dGPU Treble snippets
       enable = true;
       syncModels = true;
+      user = "ollama";
+      group = "ollama";
 
       # Models to use
       loadModels = [
