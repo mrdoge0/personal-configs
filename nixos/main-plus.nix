@@ -8,10 +8,10 @@
   ...
 }:
 
-# Fetch more extarnal stuff
+# Fetch more external stuff
 let
   # Hyper Simple Flakes Collection
-  hypersimple-flakes-collection = builtins.getFlake "github:mrdoge0/hypersimple-flakes-collection/main";
+  hypersimple-flakes-collection = builtins.getFlake ( "path:" + toString ./. + "/../flake.nix" );
 in
 
 {
