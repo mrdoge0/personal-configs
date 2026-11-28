@@ -662,6 +662,7 @@ in
     users.Teto = {
       # Main user config
       isNormalUser = true;
+      isSystemUser = lib.mkForce false;
       uid = 1000;
       description = "Kasane Teto SV1";
       home = "/home/Teto";
