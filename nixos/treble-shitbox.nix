@@ -80,6 +80,12 @@
   # Set up ZRAM size
   zramSwap.memoryMax = 12884901888;
 
-  # Auto scrub BTRFS on HDD
-  services.btrfs.autoScrub.fileSystems = [ "/HDD" ];
+  # Services
+  services = {
+    # Auto scrub BTRFS on HDD
+    btrfs.autoScrub.fileSystems = [ "/HDD" ];
+
+    # Install Ollama models to HDD
+    ollama.modelsDir = "/HDD/Ollama";
+  };
 }
