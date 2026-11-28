@@ -99,7 +99,8 @@ in
         boxbuddy
         distrobox
 
-        # AI Slop Upscaler
+        # AI Slop
+        alpaca
         upscayl
 
         # Kdenlive
