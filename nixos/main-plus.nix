@@ -11,7 +11,7 @@
 # Fetch more external stuff
 let
   # Hyper Simple Flakes Collection
-  hypersimple-flakes-collection = builtins.getFlake ( "path:" + toString ./. + "/../flake.nix" );
+  hypersimple-flakes-collection = builtins.getFlake "path:${toString ./.}/..";
 in
 
 {
