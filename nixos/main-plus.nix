@@ -30,7 +30,7 @@ in
       enable = true;
       user = "Teto";
       home = "/home/Teto";
-      group = "AllRealUsers";
+      group = "users";
       syncModels = true;
 
       # Models to use
