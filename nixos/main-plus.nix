@@ -95,7 +95,7 @@ in
         # Gaming time (*little* more intensive)
         heroic
 
-        # Containers
+        # Distrobox
         boxbuddy
         distrobox
 
