@@ -28,9 +28,6 @@ in
       # Main config
       # services.ollama.package is expected from the dGPU Treble snippets
       enable = true;
-      user = "Teto";
-      home = "/home/Teto";
-      group = "users";
       syncModels = true;
 
       # Models to use
@@ -88,7 +85,7 @@ in
     # Kasane Teto
     Teto = {
       # Add to the Docker and QEMU related groups
-      extraGroups = [ "docker" "kvm" "libvirtd" ];
+      extraGroups = [ "docker" "kvm" "libvirtd" "ollama" ];
 
       # A few more packages for Teto
       packages = with pkgs; [
