@@ -25,6 +25,10 @@
     vpl-gpu-rt
   ];
 
+  # Ollama: Use the ollama-vulkan package because it is the best performing with Arc
+  # (god I wish Intel had it's own CUDA/ROCm alternative)
+  services.ollama.package = pkgs.ollama-vulkan;
+
   # Environment variable to use Intel VAAPI
   environment.sessionVariables = rec {
     LIBVA_DRIVER_NAME = "iHD";
