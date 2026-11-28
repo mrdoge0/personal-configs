@@ -22,6 +22,23 @@ in
 
     # LACT
     lact.enable = true;
+
+    # Ollama
+    ollama = {
+      # Main config
+      # services.ollama.package is expected from the dGPU Treble snippets
+      enable = true;
+      user = "Teto";
+      home = "/home/Teto";
+      group = "AllRealUsers";
+      syncModels = true;
+
+      # Models to use
+      loadModels = [
+        # GPT-OSS (20B since I can't afford WS GPUs :D)
+        "gpt-oss:20b"
+      ];
+    };
   };
 
   # Programs
